@@ -1,0 +1,31 @@
+<h1>Open tasks</h1>
+
+
+<%= will_paginate @tasks, :renderer => BootstrapPagination::Rails %>
+
+
+<div class="container-fluid">
+  <section>
+<% for task in @tasks -%>
+  <br> </br>
+  <div class="row" margin-left="20px">
+    <div class="span4">
+      <div class="thumbnails">
+        <img width="300px" height="100px" src="<%=task.imageurl%>" alt="">
+      </img>
+    </div>
+    </div>
+    <div class="span4">
+      <%= link_to "Work on this task", edit_task_path(task.xim_id) %>
+    </div>
+    <div class="span4"> </div>
+  </div>
+  <%end-%>
+</section>
+</div>
+
+
+<br />
+<%= will_paginate @tasks, :renderer => BootstrapPagination::Rails %>
+
+    <%= link_to 'New Task', new_task_path %>

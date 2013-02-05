@@ -1,0 +1,20 @@
+<h1>Task Detail</h1>
+
+<div class="container">
+	<div class="row imagediv">
+		<%= form_for(@task) do |f| %>
+		<div class="span7">
+			<img src="<%=@task.imageurl%>"> </img>
+		</div>
+		<div class="span5">
+			<div class="output">
+				<%= f.text_area :output, placeholder: "your work.."%>
+			</div>
+		</div>
+	</div>
+</div>
+<%= f.submit "Post", class: "btn btn-large btn-primary"%>
+		<%end%>
+
+<%= link_to 'Show', @task %> |
+<%= link_to 'Back', tasks_path %>

@@ -1,0 +1,9 @@
+<h1>Welcome to Ximly! <%= @user.name %>!</h1>
+ <p>
+ You have successfully signed up to ximly.
+ your username is: <%= @user.email %>.<br/>
+ </p>
+ <p>
+<%= link_to 'Confirm my account', user_confirm_url(@user.confirmation_token) %>
+
+ <p>Thanks for joining and have a great day!</p>
