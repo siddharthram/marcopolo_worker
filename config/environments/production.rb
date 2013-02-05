@@ -41,7 +41,7 @@ config.assets.initialize_on_precompile = false
  }
  ActionMailer::Base.delivery_method ||= :smtp
 
- config.action_mailer.default_url_options = { :host => 'ancient-sands-9740.herokuapp.com' }   
+ config.action_mailer.default_url_options = { :host => 'ximly.herokuapp.com' }   
 
 
   # Defaults to nil and saved in location specified by config.assets.prefix
