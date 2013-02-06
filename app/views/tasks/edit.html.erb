@@ -3,10 +3,11 @@
 <div class="container">
 	<div class="row imagediv">
 		<%= form_for(@task) do |f| %>
-		<div class="span7">
-			<img src="<%=@task.imageurl%>"> </img>
+		<div class="span6">
+			<%= link_to image_tag(@task.imageurl), @task.imageurl,
+			onclick: "window.open (this.href, 'mywindow','width=600,height=600')" %>
 		</div>
-		<div class="span5">
+		<div class="span4">
 			<div class="output">
 				<%= f.text_area :output, placeholder: "your work.."%>
 			</div>
