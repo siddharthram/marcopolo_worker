@@ -1,6 +1,7 @@
 
 class TasksController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:preview, :postview]
   include HTTParty
   format :json
   @@base ='http://default-environment-jrcyxn2kkh.elasticbeanstalk.com'
@@ -60,6 +61,12 @@ class TasksController < ApplicationController
       format.json { render json: @tasks }
     end
   end
+
+  def preview
+    puts "IN PREVIEW"
+    
+  end
+
 
   # GET /tasks/1
   # GET /tasks/1.json

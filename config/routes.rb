@@ -9,6 +9,9 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
   get "static_pages/home"
   get "static_pages/help"
 
+  get "tasks/preview"
+
+
   
 devise_scope :user do
   match '/confirm/:confirmation_token', :to => "devise/confirmations#show", :as => "user_confirm", :only_path => false
@@ -16,6 +19,12 @@ end
   
   resources :tasks
 
+
+resources :tasks do
+  member do
+    get 'preview'
+  end
+end
 
   resources :users
 
