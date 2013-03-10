@@ -6,66 +6,60 @@ class TasksController < ApplicationController
   format :json
   @@base ='http://default-environment-jrcyxn2kkh.elasticbeanstalk.com'
   #base_uri 'localhost:8080'
-  #@@base = 'http://localhost:8080/MarcoPolo'
+  #@base = 'http://localhost:8080/MarcoPolo'
   # GET /tasks
   # GET /tasks.json
   def index
-    #@tasks = Task.all
-    # insert call here to server
-    #@tasks = [ 
-     # ["1", "http://rafalab.jhsph.edu/simplystats/dongle-capitalism.jpg", "open"],
-     # ["2", "http://williamkaminsky.files.wordpress.com/2006/06/whiteboard2.jpg", "open"]
-    #]
-    # is this a pagination call?
-
-    page = params[:page]
-    #puts "PAGE>>>>>>>>" + page
-    if (page == nil )
-    response = HTTParty.get(@@base + '/task/open')
-
-    puts "response = " + response.to_s
-
-    #@tasks = Array.new
-    #i = 0
-
-    Task.delete_all
-    newTasks = []
-    response.parsed_response.each do |k, v|
-      v.each do |a|
-        puts "" + a.to_s
-        #if !Task.exists?(:xim_id  => a["serverUniqueRequestId"])
-          newTasks << Task.new(xim_id: a["serverUniqueRequestId"], imageurl: a["imageUrl"] )
-         # t.xim_id = a["serverUniqueRequestId"]
-         # t.imageurl = a["imageUrl"]
-          puts "SAVING T.... " + t.to_s
-         # t.save
-        #end
-        #t= Array.new
-        #t= [
-        ##    a["serverUniqueRequestId"], 
-        #    a["imageUrl"],
-        #    0
-        #  ]
-        #  @tasks << t
-        #i=i+1
+    puts "sadfdsafd"
+    if current_user.try(:admin?)
+      puts "YO, ADMIN!!!"
+      page = params[:page]
+      if (page == nil )
+        response = HTTParty.get(@@base + '/task/open')
+        puts "response = " + response.to_s
+        Task.delete_all
+        newTasks = []
+        response.parsed_response.each do |k, v|
+          v.each do |a|
+            puts "" + a.to_s
+            newTasks << Task.new(xim_id: a["serverUniqueRequestId"], imageurl: a["imageUrl"] )     
+            puts "SAVING T.... " + t.to_s
+          end
+        end
+        Task.import newTasks
       end
-    end
-    Task.import newTasks
-  end
+      puts "YO, TASK!!"
     #@tasks = Task.all
     @tasks = Task.paginate(:page => params[:page], :per_page => 5)
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
     end
+  else # not admin
+    puts "Bad boy.. not admin"
+    render :file =>  "public/403.html"
+  end
+end
+
+
+
+def preview
+  puts "IN PREVIEW"
+  @server = params[:serverUniqueRequestId]
+  @assignment = params[:assignmentId]
+  @imagelocation = params[:imageurl]
+  id = params[:id]
+  if (@assignmentId != "ASSIGNMENT_ID_NOT_AVAILABLE")
+    #task has been accepted
+      # add new task and then display it
+      t = Task.new(xim_id: @server, imageurl: @imagelocation)
+      t.save     
+      redirect_to action: :edit, id: id
+    else 
+      #preview mode
+    end
   end
 
-  def preview
-    puts "IN PREVIEW"
-    
-  end
 
 
   # GET /tasks/1

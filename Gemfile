@@ -22,12 +22,15 @@ gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'tlsmail'
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
 gem 'sqlite3'
 gem 'annotate'
+gem 'quiet_assets'
+
 end
 
 

@@ -9,7 +9,7 @@ Ximly::Application.configure do
   config.action_controller.perform_caching = true
 
 
-config.action_mailer.default_url_options = { :host => 'mysterious-retreat-8129.herokuapp.com' }
+config.action_mailer.default_url_options = { :host => 'ximly.herokuapp.com' }
 config.assets.initialize_on_precompile = false
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
