@@ -23,6 +23,9 @@ config.assets.initialize_on_precompile = false
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  #analytics
+  config.gem 'rack-google-analytics', :lib => 'rack/google-analytics'
+  config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-38248275-1'
 
  # require 'tlsmail'       
  #Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)   
