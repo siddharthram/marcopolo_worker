@@ -143,7 +143,8 @@ def preview
     #puts "OUTPUT...." + output
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: r.to_s}
+        #format.html { redirect_to @task, notice: r.to_s}
+        format.html { redirect_to root_url}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
