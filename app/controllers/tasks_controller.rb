@@ -58,6 +58,7 @@ def preview
       redirect_to action: :edit, id: id
     else 
       #preview mode
+      render :layout => false # render the preivew with no layout
     end
   end
 
