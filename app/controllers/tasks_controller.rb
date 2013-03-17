@@ -56,11 +56,12 @@ def preview
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
       redirect_to action: :edit, id: id
-    else 
+  else 
       #preview mode
-      render :layout => false # render the preivew with no layout
-    end
+      puts "=============PREVIEW MODE=================="
+      render #:layout => false # render the preivew with no layout
   end
+end
 
 
 
