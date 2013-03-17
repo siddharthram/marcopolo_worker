@@ -47,7 +47,7 @@ def preview
   puts "IN PREVIEW"
   @server = params[:serverUniqueRequestId]
   @assignment = params[:assignmentId]
-  @imagelocation = params[:imageurl]
+  @imagelocation = params[:imageUrl]
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
     puts "assignment ID is not available - " + @assignment.to_s
