@@ -92,6 +92,23 @@ end
     #@task = Task.find(params[:id])
     puts "**********Task id is" + params[:id]
     @task = Task.find_by_xim_id(params[:id])
+
+    puts "===sending data " + @task.xim_id.to_s + " " + current_user.email.to_s
+
+
+    #Lock the task..
+    options = {
+      #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      :body => {
+        :serverUniqueRequestId => @task.xim_id,
+        :emailId => current_user.email
+      }
+    }
+       # r = HTTParty.post(@@base + '/task/lock', options).inspect
+      r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + @task.xim_id.to_s + "&emailId=" + current_user.email.to_s).inspect
+
+puts "r= " + r.to_s
+
     #@task.xim_id = params[:id].to_i
     # FIXME - hard coded image for now
 
