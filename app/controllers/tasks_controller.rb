@@ -1,7 +1,7 @@
 
 class TasksController < ApplicationController
   #before_filter :authenticate_user!
-  before_filter :authenticate_user!, :except => [:preview, :postview]
+  before_filter :authenticate_user!, :except => [:preview, :postview, :edit]
   include HTTParty
   format :json
   @@base ='http://default-environment-jrcyxn2kkh.elasticbeanstalk.com'
@@ -49,7 +49,8 @@ def preview
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageurl]
   id = params[:id]
-  if (@assignmentId != "ASSIGNMENT_ID_NOT_AVAILABLE")
+  if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
+    puts "assignment ID is not available - " + @assignment.to_s
     #task has been accepted
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
