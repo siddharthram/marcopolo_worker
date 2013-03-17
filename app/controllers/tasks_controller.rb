@@ -59,7 +59,7 @@ def preview
   else 
       #preview mode
       puts "=============PREVIEW MODE=================="
-      render #:layout => false # render the preivew with no layout
+      render  :layout => 'noheader' #:layout => false # render the preivew with no layout
   end
 end
 
