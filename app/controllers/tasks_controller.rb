@@ -92,8 +92,13 @@ end
     #@task = Task.find(params[:id])
     puts "**********Task id is" + params[:id]
     @task = Task.find_by_xim_id(params[:id])
+    email = ""
+    xim_id= @task.xim_id.to_s
+    if (current_user != nil)
+      email = current_user.email.to_s
+    end
 
-    puts "===sending data " + @task.xim_id.to_s + " " + current_user.email.to_s
+    puts "===sending data " + xim_id + " " + email
 
 
     #Lock the task..
@@ -101,11 +106,11 @@ end
       #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
-        :emailId => current_user.email
+        :emailId => email
       }
     }
        # r = HTTParty.post(@@base + '/task/lock', options).inspect
-      r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + @task.xim_id.to_s + "&emailId=" + current_user.email.to_s).inspect
+      r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
 
 puts "r= " + r.to_s
 
