@@ -1,10 +1,10 @@
 
 class TasksController < ApplicationController
+  include TasksHelper
   #before_filter :authenticate_user!
   before_filter :authenticate_user!, :except => [:preview, :postview, :edit, :update]
   include HTTParty
   format :json
-  @@base ='http://default-environment-jrcyxn2kkh.elasticbeanstalk.com'
   #base_uri 'localhost:8080'
   #@base = 'http://localhost:8080/MarcoPolo'
   # GET /tasks
@@ -56,12 +56,12 @@ def preview
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
       redirect_to action: :edit, id: id
-  else 
+    else 
       #preview mode
       puts "=============PREVIEW MODE=================="
       render  :layout => 'noheader' #:layout => false # render the preivew with no layout
+    end
   end
-end
 
 
 
@@ -110,9 +110,9 @@ end
       }
     }
        # r = HTTParty.post(@@base + '/task/lock', options).inspect
-      r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
+       r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
 
-puts "r= " + r.to_s
+       puts "r= " + r.to_s
 
     #@task.xim_id = params[:id].to_i
     # FIXME - hard coded image for now
@@ -160,23 +160,31 @@ puts "r= " + r.to_s
     r = HTTParty.post(@@base + '/task/submit', options).inspect
 
     puts "response ======" + r.to_s
-
-
-
-
+    getTasks
+    puts "done with tasks.. getting the next one"
+    puts "FIRST IS=====" + Task.first.to_s
+    
 
     #puts "OUTPUT...." + output
     respond_to do |format|
       if @task.update_attributes(params[:task])
         #format.html { redirect_to @task, notice: r.to_s}
-        format.html { redirect_to root_url}
+        #format.html { redirect_to root_url}
+        if (Task.first == nil)
+          puts "NOOOO MOOOORE Tasks"
+          render :file => "public/nomore.html"
+        else
+          puts "++++++++++editing " + Task.first.to_s
+          format.html { redirect_to edit_task_path(Task.first.xim_id) }
+        #format.html {render action: "edit"}
         format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
+    else
+      format.html { render action: "edit" }
+      format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
