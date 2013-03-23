@@ -1,7 +1,7 @@
 
 class TasksController < ApplicationController
   #before_filter :authenticate_user!
-  before_filter :authenticate_user!, :except => [:preview, :postview, :edit]
+  before_filter :authenticate_user!, :except => [:preview, :postview, :edit, :update]
   include HTTParty
   format :json
   @@base ='http://default-environment-jrcyxn2kkh.elasticbeanstalk.com'
