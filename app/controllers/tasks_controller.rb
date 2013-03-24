@@ -109,8 +109,8 @@ def preview
         :emailId => email
       }
     }
-       # r = HTTParty.post(@@base + '/task/lock', options).inspect
-       r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
+       r = HTTParty.post(@@base + '/task/lock', options).inspect
+       #r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
 
        puts "r= " + r.to_s
 
