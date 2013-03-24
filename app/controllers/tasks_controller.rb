@@ -48,6 +48,8 @@ def preview
   @server = params[:serverUniqueRequestId]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
+  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true )  
+
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
     puts "mturk - read to work on task - " + @assignment.to_s
