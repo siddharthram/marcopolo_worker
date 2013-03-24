@@ -89,7 +89,7 @@ def preview
 
   # GET /tasks/1/edit
   def edit
-  #@task = Task.find(params[:id])
+  @task = Task.find(params[:id])
   @server = params[:serverUniqueRequestId]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
