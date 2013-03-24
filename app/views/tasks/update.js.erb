@@ -1,0 +1,13 @@
+alert("in the js.erb file");
+var opt = "<%= escape_javascript(@options.to_s)%>";
+
+$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",opt,function()
+	{alert("posted to server")});
+
+<% if (@current_user == nil ) %>
+var turk = "<%=escape_javascript(@mturk.to_s)%>";
+$.post({"https://www.mturk.com/mturk/externalSubmit",turk,function(resp){
+			alert("external submit ok");}
+	});
+<% end %>
+

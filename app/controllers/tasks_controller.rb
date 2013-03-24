@@ -103,7 +103,7 @@ def preview
 
     #Lock the task..
     options = {
-      #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
         :emailId => email
@@ -142,11 +142,15 @@ def preview
 
     puts "UPDATING...."
     @task = Task.find(params[:id])
+    @assignment = params[:assignmentId]
+    @current_user = current_user
     output = params[:task][:output]
 
     puts "output is " + output.to_s
+    puts "assignement id = " + @assignment.to_s
+    
 
-    options = {
+    @options = {
       :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
@@ -154,13 +158,20 @@ def preview
       }
     }
 
-    puts "CALLING OUT TO + " +  @@base
+    @mturk = {
+      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      :body     => {
+        :assignmentId => @assignment
+      }
+    }
+
+    #puts "CALLING OUT TO + " +  @@base
 
     #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect
-    r = HTTParty.post(@@base + '/task/submit', options).inspect
+    #r = HTTParty.post(@@base + '/task/submit', options).inspect
 
-    puts "response ======" + r.to_s
-    getTasks
+    #puts "response ======" + r.to_s
+    #getTasks
     puts "done with tasks.. getting the next one"
     puts "FIRST IS=====" + Task.first.to_s
     
@@ -177,10 +188,12 @@ def preview
           puts "++++++++++editing " + Task.first.to_s
           format.html { redirect_to edit_task_path(Task.first.xim_id) }
         #format.html {render action: "edit"}
+        format.js
         format.json { head :no_content }
       end
     else
       format.html { render action: "edit" }
+      format.js
       format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
