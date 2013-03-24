@@ -91,28 +91,26 @@ def preview
   def edit
     #@task = Task.find(params[:id])
     puts "**********Task id is" + params[:id]
-    @task = Task.find_by_xim_id(params[:id])
     email = ""
-    xim_id= @task.xim_id.to_s
+    xim_id = params[:id]
     if (current_user != nil)
+      # Then this is a private task, not mturk
+      @task = Task.find_by_xim_id(params[:id])
       email = current_user.email.to_s
-    end
-
-    puts "===sending data " + xim_id + " " + email
-
-
-    #Lock the task..
-    options = {
+      xim_id= @task.xim_id.to_s
+      puts "===sending data " + xim_id + " " + email
+      #Lock the task..
+      options = {
       :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
         :emailId => email
-      }
-    }
-       r = HTTParty.post(@@base + '/task/lock', options).inspect
+       }
+     }
+     r = HTTParty.post(@@base + '/task/lock', options).inspect
        #r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
-
        puts "r= " + r.to_s
+     end
 
     #@task.xim_id = params[:id].to_i
     # FIXME - hard coded image for now
@@ -148,7 +146,7 @@ def preview
 
     puts "output is " + output.to_s
     puts "assignement id = " + @assignment.to_s
-    
+
 
     @options = {
       :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
