@@ -45,7 +45,7 @@ end
 
 def preview
   puts "IN PREVIEW"
-  @server = params[:serverUniqueRequestId]
+  @server = params[:id]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
   @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true )  
@@ -91,20 +91,24 @@ def preview
 
   # GET /tasks/1/edit
   def edit
-  @task = Task.find(params[:id])
+    @task = nil
+     email = ""
   @server = params[:serverUniqueRequestId]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
-  puts "**********Task id is" + params[:id] + 'imagelocation is' + @imagelocation
-
-    email = ""
-    xim_id = params[:id]
-    if (current_user != nil)
+  puts "**********Task id is" + params[:id] 
+ #xim_id = params[:id]
+  if (current_user == nil)
+    #mturk job - look up by xim_id
+    @task = Task.find_by_xim_id(@server)
+    puts 'imagelocation is' + @imagelocation
+  else
+  # (current_user != nil)
       # Then this is a private task, not mturk
       @task = Task.find_by_xim_id(params[:id])
       email = current_user.email.to_s
       xim_id= @task.xim_id.to_s
-      @imagelocation = task.imageurl
+      @imagelocation = @task.imageurl
       puts "===sending data " + xim_id + " " + email
       #Lock the task..
       options = {
