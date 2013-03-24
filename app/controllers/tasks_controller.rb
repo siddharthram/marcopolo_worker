@@ -90,6 +90,9 @@ def preview
   # GET /tasks/1/edit
   def edit
     #@task = Task.find(params[:id])
+  @server = params[:serverUniqueRequestId]
+  @assignment = params[:assignmentId]
+  @imagelocation = params[:imageUrl]
     puts "**********Task id is" + params[:id]
     email = ""
     xim_id = params[:id]
@@ -98,6 +101,7 @@ def preview
       @task = Task.find_by_xim_id(params[:id])
       email = current_user.email.to_s
       xim_id= @task.xim_id.to_s
+      @imagelocation = task.imageurl
       puts "===sending data " + xim_id + " " + email
       #Lock the task..
       options = {
