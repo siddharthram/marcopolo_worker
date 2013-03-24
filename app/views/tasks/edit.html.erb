@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row imagediv">
-		<%= form_for(@task, :remote => true) do |f| %>
+		<%= form_for(:task, :remote => true) do |f| %>
 		<div class="span6">
 			<%= puts @imagelocation %>
 			<%= link_to image_tag(@imagelocation), @imagelocation,
