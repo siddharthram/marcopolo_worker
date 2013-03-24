@@ -50,12 +50,12 @@ def preview
   @imagelocation = params[:imageUrl]
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
-    puts "assignment ID is not available - " + @assignment.to_s
+    puts "mturk - read to work on task - " + @assignment.to_s
     #task has been accepted
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: id
+      redirect_to action: :edit, id: id, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
       #preview mode
       puts "=============PREVIEW MODE=================="
