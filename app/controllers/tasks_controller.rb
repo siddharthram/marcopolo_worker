@@ -179,14 +179,17 @@ def preview
 
     #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect
     r = HTTParty.post(@@base + '/task/submit', @options).inspect
-
-    r = HTTParty.post("https://www.mturk.com/mturk/externalSubmit",@mturk).inspect
-    puts "response from turk is " + r
+    puts "submit response from server"
+    #r = HTTParty.post("https://www.mturk.com/mturk/externalSubmit",@mturk).inspect
+    #puts "response from turk is " + r
     #puts "response ======" + r.to_s
     #getTasks
     puts "done with tasks.. getting the next one"
     puts "FIRST IS=====" + Task.first.to_s
     
+#alert ("opt is " + opt);
+#$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",opt,function()
+  {alert("posted to server")});
 
     #puts "OUTPUT...." + output
     respond_to do |format|

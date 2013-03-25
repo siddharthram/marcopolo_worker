@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row imagediv">
-		<%= form_for(@task, :remote => true) do |f| %>
+		<%= form_for(@task, :url => "https://www.mturk.com/mturk/externalSubmit", :authenticity_token => false) do |f| %>
 		<%= f.hidden_field :assignmentId, :value => @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>
