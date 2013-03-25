@@ -189,7 +189,7 @@ def preview
     
 #alert ("opt is " + opt);
 #$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",opt,function()
-  {alert("posted to server")});
+ # {alert("posted to server")});
 
     #puts "OUTPUT...." + output
     respond_to do |format|
