@@ -171,7 +171,7 @@ def preview
       #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body     => {
         :assignmentId => @assignment,
-        :output => outpot
+        :output => output
       }
     }
 
