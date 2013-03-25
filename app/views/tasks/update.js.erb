@@ -3,9 +3,14 @@ var opt = "<%= escape_javascript(@options.to_s)%>";
 
 <% if (@current_user == nil ) %>
 var turk = "<%=escape_javascript(@mturk.to_s)%>";
-$.post({"https://www.mturk.com/mturk/externalSubmit",turk,function(resp){
-			alert("external submit ok");}
-	});
+var id = "<%=escape_javascript(@id)%>";
+var ass = "<%=escape_javascript(@assignmentId)%>";
+var out = "<%=escape_javascript(@output)%>";
+
+var form = "edit_task_" + id;
+alert (form);
+var data = { "assignmentId": ass, "output": out}
+$(form).submit(data, function(d) { alert("retuned " + d) });
 <% else %>
 window.location.replace("/");
 <% end %>
