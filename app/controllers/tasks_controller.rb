@@ -168,9 +168,10 @@ def preview
     }
 
     @mturk = {
-      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body     => {
-        :assignmentId => @assignment
+        :assignmentId => @assignment,
+        :output => outpot
       }
     }
 
