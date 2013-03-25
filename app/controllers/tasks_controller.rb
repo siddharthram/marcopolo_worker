@@ -152,9 +152,9 @@ def preview
     puts "UPDATING...."
     @id = params[:id]
     @task = Task.find(params[:id])
-    @assignment = params[:task][:assignmentId]
+    @assignment = params[:assignmentId]
     @current_user = current_user
-    output = params[:task][:output]
+    output = params[:output]
 
     puts "output is " + output.to_s
     puts "assignement id = " + @assignment.to_s
@@ -191,6 +191,7 @@ def preview
 #alert ("opt is " + opt);
 #$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",opt,function()
  # {alert("posted to server")});
+#$(form).submit(data, function(d) { alert("retuned " + d) });
 
     #puts "OUTPUT...." + output
     respond_to do |format|
