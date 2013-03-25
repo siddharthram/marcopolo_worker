@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row imagediv">
-		<%= form_for(@task, :remote => true) do |f| %>
+		<%= form_for(@task, :url => "https://www.mturk.com/mturk/externalSubmit", :remote => true, :authenticity_token => false) do |f| %>
 		<%= f.hidden_field :assignmentId, :value => @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 </div>
-<%= f.submit "Get", class: "btn btn-large btn-primary"%>
+<%= f.submit "Done", class: "btn btn-large btn-primary"%>
 		<%end%>
 
 <%= link_to 'Show', @task %> |
