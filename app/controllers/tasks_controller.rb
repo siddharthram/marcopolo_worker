@@ -151,7 +151,7 @@ def preview
 
     puts "UPDATING...."
     @task = Task.find(params[:id])
-    @assignment = params[:assignmentId]
+    @assignment = params[:task][:assignmentId]
     @current_user = current_user
     output = params[:task][:output]
 
