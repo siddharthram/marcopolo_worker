@@ -24,6 +24,7 @@ end
 resources :tasks do
   member do
     get 'preview'
+    post 'notify'
   end
 end
 

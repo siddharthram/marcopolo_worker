@@ -8,9 +8,11 @@ var ass = "<%=escape_javascript(@assignmentId)%>";
 var out = "<%=escape_javascript(@output)%>";
 
 var form = "edit_task_" + id;
-alert (form);
-var data = { "assignmentId": ass, "output": out}
-$(form).submit(data, function(d) { alert("retuned " + d) });
+var data = { "assignmentId": ass, "output": out};
+
+$(form).post("/notify",opt, function() {console.log("notify done")});
+
+
 <% else %>
 window.location.replace("/");
 <% end %>

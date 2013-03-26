@@ -216,6 +216,25 @@ def preview
   end
 end
 
+def notify
+  puts "--=----IN NOTIFY===-====="
+    @id = params[:id]
+    @task = Task.find(params[:id])
+    output = params[:output]
+
+    puts "ID is " + @id.to_s+ " task is " + @task.to_s + " output is " + @output
+  @options = {
+      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      :body => {
+        :serverUniqueRequestId => @task.xim_id,
+        :output => output
+      }
+    }
+  r = HTTParty.post(@@base + '/task/submit', @options).inspect
+  puts "submit response from server"
+end
+
+
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
