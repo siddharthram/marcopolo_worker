@@ -11,7 +11,7 @@ var formtag = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
 
-$.post({url: "http://workersandbox.mturk.com/mturk/externalSubmit",opt, function() {console.log("notify done")});
+$.post({url: "http://workersandbox.mturk.com/mturk/externalSubmit",form, function() {console.log("notify done")});
 
 <% else %>
 window.location.replace("/");
