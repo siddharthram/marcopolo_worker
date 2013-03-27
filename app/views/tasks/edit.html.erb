@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row imagediv mturk">
 		<%#:url => "http://workersandbox.mturk.com/mturk/externalSubmit", %>
-		<%= form_for(@task, :remote => true, :method => "post") do |f| %>
+		<%= form_for(@task, :remote => true) do |f| %>
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>

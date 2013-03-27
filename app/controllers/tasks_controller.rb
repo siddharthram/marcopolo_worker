@@ -91,6 +91,7 @@ def preview
 
   # GET /tasks/1/edit
   def edit
+    puts "---------====ENTERING EDIT=========----"
     @task = nil
      email = ""
   @server = params[:serverUniqueRequestId]
