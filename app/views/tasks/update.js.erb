@@ -1,21 +1,5 @@
-alert ("in js");
+alert("in js");
+console.log("in js");
 
-var opt = "<%= escape_javascript(@options.to_s)%>";
-
-<% if (@current_user == nil ) %>
-var turk = "<%=escape_javascript(@mturk.to_s)%>";
-var id = "<%=escape_javascript(@id)%>";
-var ass = "<%=escape_javascript(@assignmentId)%>";
-var out = "<%=escape_javascript(@output)%>";
-
-var formtag = "edit_task_" + id;
-var data = { "assignmentId": ass, "output": out};
-var form = $(formtag).serialize();
-
-$.post({url: "http://workersandbox.mturk.com/mturk/externalSubmit",form, function() {console.log("notify done")});
-alert ("posted to turk");
-<% else %>
-window.location.replace("/");
-<% end %>
 
 
