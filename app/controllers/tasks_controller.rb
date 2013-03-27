@@ -204,7 +204,7 @@ def preview
           render :file => "public/nomore.html"
         else
           puts "++++++++++editing " + Task.first.to_s
-          format.html { redirect_to edit_task_path(Task.first.xim_id) }
+          #format.html { redirect_to edit_task_path(Task.first.xim_id) }
         #format.html {render action: "edit"}
         format.js
         format.json { head :no_content }
