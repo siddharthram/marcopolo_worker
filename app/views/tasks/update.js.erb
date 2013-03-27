@@ -1,5 +1,5 @@
 var opt = "<%= escape_javascript(@options.to_s)%>";
-
+alert ("in js");
 
 <% if (@current_user == nil ) %>
 var turk = "<%=escape_javascript(@mturk.to_s)%>";
@@ -12,7 +12,7 @@ var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
 
 $.post({url: "http://workersandbox.mturk.com/mturk/externalSubmit",form, function() {console.log("notify done")});
-
+alert ("posted to turk");
 <% else %>
 window.location.replace("/");
 <% end %>
