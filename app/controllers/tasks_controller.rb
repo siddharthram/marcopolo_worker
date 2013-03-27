@@ -155,9 +155,9 @@ def preview
     @task = Task.find(params[:id])
     @assignment = params[:assignmentId]
     @current_user = current_user
-    output = params[:output]
+    @output = params[:output]
 
-    puts "output is " + output.to_s
+    puts "output is " + @output.to_s
     puts "assignement id = " + @assignment.to_s
 
 
@@ -165,7 +165,7 @@ def preview
       :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
-        :output => output
+        :output => @output
       }
     }
 
@@ -173,7 +173,7 @@ def preview
       #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
       :body     => {
         :assignmentId => @assignment,
-        :output => output
+        :output => @output
       }
     }
 
