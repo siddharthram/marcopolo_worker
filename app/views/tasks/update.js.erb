@@ -1,5 +1,6 @@
-var opt = "<%= escape_javascript(@options.to_s)%>";
 alert ("in js");
+
+var opt = "<%= escape_javascript(@options.to_s)%>";
 
 <% if (@current_user == nil ) %>
 var turk = "<%=escape_javascript(@mturk.to_s)%>";
