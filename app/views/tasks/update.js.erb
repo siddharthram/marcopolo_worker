@@ -10,7 +10,7 @@ var out = "<%=escape_javascript(@output)%>";
 var form = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 
-$(form).post("/notify",opt, function() {console.log("notify done")});
+$(form).ajaxSubmit({url: "http://workersandbox.mturk.com/mturk/externalSubmit",opt, function() {console.log("mturk done")});
 
 <% else %>
 window.location.replace("/");
