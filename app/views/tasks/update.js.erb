@@ -1,5 +1,3 @@
-alert("in js");
-console.log("in js");
 var opt = "<%= escape_javascript(@options.to_s)%>";
 
 <% if (@current_user == nil ) %>
@@ -12,8 +10,11 @@ var formtag = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
 
-$.post("http://workersandbox.mturk.com/mturk/externalSubmit",form, function() {console.log("notify done")});
-alert("posted to turk");
+$(formtag).post("/update",form, function() {
+	$(formtag).attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
+	$(formtag).submit();
+});
+
 <% else %>
 window.location.replace("/");
 <% end %>
