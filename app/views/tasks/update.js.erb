@@ -13,6 +13,20 @@ var loc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS");
 
+var req = $.ajax({
+  			url: loc,
+  			type: "put",
+  			data: data
+  		});
+  
+ req.done(function(response, ts, jqXHR) {
+    	 $.attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+    	 $(formtag).submit(); 
+  });
+  req.fail(function(response, ts, error){
+   alert("failed" +ts + error);
+});
+
 <% else %>
 window.location.replace("/");
 <% end %>
