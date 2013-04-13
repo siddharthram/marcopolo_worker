@@ -9,17 +9,20 @@ var out = "<%=escape_javascript(@output)%>";
 var formtag = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
-var url = "http://ximly.herokuapp.com/update" + "/" + id;
+var url = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS");
-$.post(url,form, function() {
-	alert ("entering the turk flow");
-	$.attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
-	$.submit();
-})
-.fail (function() { alert("failed");})
-.always(function() { alert("always");})
-.done(function() { alert("finished"); });
+
+$.ajax({
+  url: url,
+  type: 'PUT',
+  data: form,
+  success: function(data) {
+    alert('Load was performed.');
+  }
+  error: function() { alert("failed");}
+});
+
 <% else %>
 window.location.replace("/");
 <% end %>
