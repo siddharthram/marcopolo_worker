@@ -9,9 +9,10 @@ var out = "<%=escape_javascript(@output)%>";
 var formtag = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
+var url = "http://ximly.herokuapp.com/update" + "/" + id;
 
 alert ("in JS");
-$.post("/update",form, function() {
+$.post(url,form, function() {
 	alert ("entering the turk flow");
 	$.attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
 	$.submit();
