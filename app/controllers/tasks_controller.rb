@@ -195,6 +195,13 @@ def preview
 #$(form).submit(data, function(d) { alert("retuned " + d) });
 
     #puts "OUTPUT...." + output
+  respond_to do |format|
+      format.html { render action: "edit" }
+      format.js
+      format.json { render json: @task.errors, status: :unprocessable_entity }
+    end
+
+=begin
     respond_to do |format|
       puts "format ==== " + format.to_s
        if @task.update_attributes(params[:task])
@@ -216,6 +223,8 @@ def preview
       format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
+=end
+
 end
 
 def notify
