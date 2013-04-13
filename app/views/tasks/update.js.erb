@@ -9,18 +9,21 @@ var out = "<%=escape_javascript(@output)%>";
 var formtag = "edit_task_" + id;
 var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
-var url = "http://ximly.herokuapp.com/tasks" + "/" + id;
+var loc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS");
 
-$.ajax({
-  url: url,
-  type: 'PUT',
-  data: form,
-  success: function(data) {
-    alert('Load was performed.');
-  }
-  error: function() { alert("failed");}
+var req = $.ajax({
+  			url: loc,
+  			type: "put",
+  			data: form
+  		});
+  
+ req.done(function(response, ts, jqXHR) {
+    alert('DONE was performed.');
+  });
+  req.fail(function(response, ts, error){
+   alert("failed" +ts + error);
 });
 
 <% else %>
