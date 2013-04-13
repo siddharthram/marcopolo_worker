@@ -20,7 +20,7 @@ var req = $.ajax({
   		});
   
  req.done(function(response, ts, jqXHR) {
-    	 $.attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+    	 $(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
     	 $(formtag).submit(); 
   });
   req.fail(function(response, ts, error){
