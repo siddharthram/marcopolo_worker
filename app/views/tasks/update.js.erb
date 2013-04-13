@@ -7,16 +7,16 @@ var ass = "<%=escape_javascript(@assignment)%>";
 var out = "<%=escape_javascript(@output)%>";
 
 var formtag = "edit_task_" + id;
-var data = { "assignmentId": ass, "output": out};
-var form = $(formtag).serialize();
-var loc = "http://ximly.herokuapp.com/tasks" + "/" + id;
+var mydata = { "assignmentId": ass, "output": out};
+var myform = $(formtag).serialize();
+var myloc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS");
 
 var req = $.ajax({
-  			url: loc,
+  			url: myloc,
   			type: "put",
-  			data: data
+  			data: mydata
   		});
   
  req.done(function(response, ts, jqXHR) {
