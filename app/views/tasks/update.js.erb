@@ -11,10 +11,10 @@ var data = { "assignmentId": ass, "output": out};
 var form = $(formtag).serialize();
 
 alert ("in JS");
-$(formtag).post("/update",form, function() {
+$.post("/update",form, function() {
 	alert ("entering the turk flow");
-	$(formtag).attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
-	$(formtag).submit();
+	$.attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
+	$.submit();
 })
 .fail (function() { alert("failed");})
 .always(function() { alert("always");})
