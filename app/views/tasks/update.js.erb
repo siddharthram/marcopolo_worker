@@ -19,14 +19,7 @@ var req = $.ajax({
   			data: mydata
   		});
   
- req.done(function(response, ts, jqXHR) {
-    	 $(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
-    	 $(formtag).submit(); 
-    	 alert ("ok, done!");
-  });
-  req.fail(function(response, ts, error){
-   alert("failed" +ts + error);
-});
+
 
 <% else %>
 window.location.replace("/");
