@@ -196,9 +196,9 @@ def preview
 
     #puts "OUTPUT...." + output
   respond_to do |format|
-      format.html { render action: "edit" }
+      #format.html { render action: "edit" }
       format.js
-      format.json { render json: @task.errors, status: :unprocessable_entity }
+      #format.json { render json: @task.errors, status: :unprocessable_entity }
     end
 
 =begin
