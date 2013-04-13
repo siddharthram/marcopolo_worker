@@ -11,9 +11,22 @@ var mydata = { "assignmentId": ass, "output": out};
 var myform = $(formtag).serialize();
 var myloc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
-alert ("in JS");
+alert ("in JS with " + myloc + " " + mydata);
 
-
+var req = $.ajax({
+  			url: myloc,
+  			type: "put",
+  			data: mydata
+  		});
+  
+ req.done(function(response, ts, jqXHR) {
+    	 $(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+    	 $(formtag).submit(); 
+    	 alert ("ok, done!");
+  });
+  req.fail(function(response, ts, error){
+   alert("failed" +ts + error);
+});
 
 <% else %>
 window.location.replace("/");
