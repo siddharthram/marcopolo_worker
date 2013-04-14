@@ -1,3 +1,32 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$(document).ready(function() {
+
+$('#edit_task').bind("ajax:success").function(evt,data,status,xhr) {
+	var $form = $(this);
+	alert ("form is" + $form);
+	$form.bind('submit', function() {
+	var act = $('#edit_task').attr('action');
+	alert ("action "+ act);
+	var portal = "http://ximly.herokuapp.com" + act;
+	var data = $('#exit_task').serialize();
+	$.ajax({ 
+		type: 'PUT',
+		url: portal,
+		data: data
+	});
+  //$(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+  req.done(function(response, ts, jqXHR) {
+  alert ("ok, done! " + response);
+  //$(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+  //$(formtag).submit(); 
+  $('#edit_task').unbind('submit');
+  $('#edit_task').attr("action",http://workersandbox.mturk.com/mturk/externalSubmit);
+  $('#edit_task').submit();
+  });
+  req.fail(function(response, ts, error){
+  alert("failed" +ts + error);
+});
+});
+return false;
+}	
+return;
+});
