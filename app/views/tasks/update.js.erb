@@ -13,9 +13,10 @@ var myloc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS with " + myloc + " " + mydata);
 
+$(formtag).attr("disabled", true);
 var req = $.ajax({
   			url: myloc,
-  			type: "put",
+  			type: "ex",
   			data: mydata
   		});
   
