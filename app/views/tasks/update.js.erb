@@ -13,21 +13,21 @@ var myloc = "http://ximly.herokuapp.com/tasks" + "/" + id;
 
 alert ("in JS with " + myloc + " " + mydata);
 
-$(formtag).attr("disabled", true);
+/*$(formtag).attr("disabled", true);
 var req = $.ajax({
   			url: myloc,
-  			type: "ex",
+  			type: "put",
   			data: mydata
-  		});
+  		});*/
   
- req.done(function(response, ts, jqXHR) {
-    	 $(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
-    	 $(formtag).submit(); 
-    	 alert ("ok, done!");
-  });
-  req.fail(function(response, ts, error){
-   alert("failed" +ts + error);
-});
+ // req.done(function(response, ts, jqXHR) {
+  $(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
+  $(formtag).submit(); 
+   alert ("ok, done!");
+ // });
+ // req.fail(function(response, ts, error){
+ //  alert("failed" +ts + error);
+//});
 
 <% else %>
 window.location.replace("/");
