@@ -1,5 +1,5 @@
 $(document).ready(function(){
-alert("Doc is ready!"+ $('#edit_task'));
+alert("Doc is ready!"+ $('.edit_task'));
 $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	var $form = $(this);
 	alert ("form is" + $form);
@@ -7,12 +7,13 @@ $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	var act = $(".edit_task").attr('action');
 	alert ("action "+ act);
 	var portal = "http://ximly.herokuapp.com" + act;
-	var data = $('.edit_task').serialize();
-	$.ajax({ 
-		type: 'PUT',
+	var mydata = $('.edit_task').serialize();
+	var req = $.ajax({ 
+		type: 'put',
 		url: portal,
-		data: data
+		data: mydata
 	});
+
   req.done(function(response, ts, jqXHR) {
   alert ("ok, done! " + response);
   //$(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
