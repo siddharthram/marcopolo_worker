@@ -4,7 +4,7 @@ function sendToTurk() {
 $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	var $form = $(this);
 	alert ("form is" + $form);
-	$('.edit_task').bind('submit', function() {
+	//$('.edit_task').bind('submit', function() {
 	var act = $(".edit_task").attr('action');
 	alert ("action "+ act);
 	var portal = "http://ximly.herokuapp.com" + act;
@@ -33,6 +33,6 @@ $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 
 });
 return false;
-});	
+//});	
 return;
 }
