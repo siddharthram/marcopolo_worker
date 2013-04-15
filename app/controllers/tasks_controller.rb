@@ -180,13 +180,16 @@ def preview
     #puts "CALLING OUT TO + " +  @@base
 
     #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect
-    r = HTTParty.post(@@base + '/task/submit', @options).inspect
-    puts "submit response from server"
+    
+    #r = HTTParty.post(@@base + '/task/submit', @options).inspect
+    #puts "submit response from server"
+    
+
     #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
     #puts "response from turk is " + r
     #puts "response ======" + r.to_s
     #getTasks
-    puts "done with tasks.. getting the next one"
+    #puts "done with tasks.. getting the next one"
     puts "FIRST IS=====" + Task.first.to_s
     
 #alert ("opt is " + opt);
@@ -195,9 +198,9 @@ def preview
 #$(form).submit(data, function(d) { alert("retuned " + d) });
 
     #puts "OUTPUT...." + output
-  respond_to do |format|
+  #respond_to do |format|
       #format.html { render action: "edit" }
-      format.js
+   #   format.js
       #format.json { render json: @task.errors, status: :unprocessable_entity }
     end
 

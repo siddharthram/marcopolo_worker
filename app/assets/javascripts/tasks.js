@@ -1,5 +1,5 @@
 $(document).ready(function(){
-alert("Doc is ready!"+ $('.edit_task'));
+alert("Doc is ready!");
 $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	var $form = $(this);
 	alert ("form is" + $form);
@@ -15,9 +15,11 @@ $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	});
 
   req.done(function(response, ts, jqXHR) {
-  alert ("ok, done! " + response);
+  alert ("ok, done! " + ts);
   //$(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
   //$(formtag).submit(); 
+  alert("type is" + $('.edit_task').attr("type"));
+  $('.edit_task').attr("type", "post");
   $('.edit_task').unbind('submit');
   $('.edit_task').attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
   $('.edit_task').submit();
