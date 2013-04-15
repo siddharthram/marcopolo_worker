@@ -1,5 +1,5 @@
 $(document).ready(function(){
-alert("Doc is ready!");
+alert("Doc is ready!"+ $('#edit_task'));
 $('#edit_task').bind("ajax:success",function(evt,data,status,xhr) {
 	var $form = $(this);
 	alert ("form is" + $form);
