@@ -2,21 +2,21 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#foo").bind('submit',function() {
+	$(".edit_task").bind('submit',function() {
 		$.ajax({
 			type : 'PUT',
 			url : '/tasks/744',
 			//data : $('#foo').serialize(),
 			success : function(response) {
 				$('#form_result').html(response);
-				$('#foo').unbind('submit');
+				$('.edit_task').unbind('submit');
 				
 	          //this is the redirect
 	          //bla = $('input[id=q]').val();
 	          //alert(bla);
 	        //  window.location.href='https://www.google.com/search?q=' + bla;
-				$("#foo").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?favoriteColor=blue&favoriteNumber=7&");
-				$('#foo').submit();
+				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?favoriteColor=blue&favoriteNumber=7&");
+				$('.edit_task').submit();
 			}
 		});
 		
@@ -26,6 +26,8 @@ $(document).ready(function() {
 });
 </script>
 </head>
+
+<!--
 <body>
 
 	<form id="foo">
@@ -44,7 +46,8 @@ $(document).ready(function() {
 	
 </body>
 </html>
-<!--
+-->
+
 <div class="container">
 	<div class="row imagediv">
 		<%= form_for(@task,  :remote => true) do |f| %>
@@ -66,4 +69,4 @@ $(document).ready(function() {
 
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>
--->
+

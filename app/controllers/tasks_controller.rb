@@ -177,6 +177,8 @@ def preview
       }
     }
 
+    #format.js
+
     #puts "CALLING OUT TO + " +  @@base
 
     #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect

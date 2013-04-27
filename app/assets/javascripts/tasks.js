@@ -7,7 +7,7 @@ $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	//$('.edit_task').bind('submit', function() {
 	var act = $(".edit_task").attr('action');
 	alert ("action "+ act);
-	var portal = "http://ximly.herokuapp.com" + act;
+	var portal = act;
 	var mydata = $('.edit_task').serialize();
 	var req = $.ajax({ 
 		type: 'put',
