@@ -5,8 +5,8 @@ $(document).ready(function() {
 	$("#foo").bind('submit',function() {
 		$.ajax({
 			type : 'GET',
-			url : '/',
-			data : $('#foo').serialize(),
+			url : '/users/sign_in',
+			//data : $('#foo').serialize(),
 			success : function(response) {
 				$('#form_result').html(response);
 				$('#foo').unbind('submit');
