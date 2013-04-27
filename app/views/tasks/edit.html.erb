@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$("#foo").bind('submit',function() {
 		$.ajax({
 			type : 'PUT',
-			url : '/users/sign_in',
+			url : '/tasks/edit/63',
 			//data : $('#foo').serialize(),
 			success : function(response) {
 				$('#form_result').html(response);
