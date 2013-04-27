@@ -1,5 +1,50 @@
 <h1>Task Detail</h1>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#foo").bind('submit',function() {
+		$.ajax({
+			type : 'GET',
+			url : '/',
+			data : $('#foo').serialize(),
+			success : function(response) {
+				$('#form_result').html(response);
+				$('#foo').unbind('submit');
+				
+	          //this is the redirect
+	          //bla = $('input[id=q]').val();
+	          //alert(bla);
+	        //  window.location.href='https://www.google.com/search?q=' + bla;
+				$("#foo").attr("action", "http://www.mturk.com/mturk/externalSubmit?favoriteColor=blue&favoriteNumber=7&");
+				$('#foo').submit();
+			}
+		});
+		
+		return false;
+	});
+	return;
+});
+</script>
+</head>
+<body>
+
+	<form id="foo">
+		<label for="bar">A bar</label> <input id="q" name="q" type="text"
+			value="junk" /> <input type="submit" id="submit_btn" value="Send" />
+		<br> Form result is ..................
+		<div id='form_result'></div>
+	</form>
+
+	<form id="foo2" action="http://www.mturk.com/mturk/externalSubmit">
+		<label for="bar">A bar</label> <input id="q" name="q" type="text"
+			value="junk2" /> <input type="submit" id="submit_btn2" value="Send" />
+		<br> Form result is ..................
+		<div id='form_result'></div>
+	</form>
+	
+</body>
+</html>
+<!--
 <div class="container">
 	<div class="row imagediv">
 		<%= form_for(@task,  :remote => true) do |f| %>
@@ -21,3 +66,4 @@
 
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>
+-->
