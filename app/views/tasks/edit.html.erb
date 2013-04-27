@@ -53,7 +53,7 @@ $(document).ready(function() {
 <div class="container">
 	<div class="row imagediv">
 		
-		%= form_tag('/task',  :remote => true) do |f| %>
+		<%= form_tag('/task',  :remote => true) do |f| %>
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>
