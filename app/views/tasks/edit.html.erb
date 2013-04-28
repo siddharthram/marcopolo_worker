@@ -2,13 +2,16 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-		var act = $(".edit_task").attr("action");
-		var output = $(".edit_task").attr("output");
-		alert (act + output);
+		       var act = $(".edit_task").attr("action");
+
 
 
 		$(".edit_task").attr("action", "");
 	$(".edit_task").bind('submit',function() {
+		var output = $(".edit_task").attr("output");
+		alert (act + output);
+
+
 		$.ajax({
 			type : 'PUT',
 			url : act,
