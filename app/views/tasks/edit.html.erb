@@ -2,17 +2,16 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-		       var act = $(".edit_task").attr("action");
-
-
-
+		var act = $(".edit_task").attr("action");
 		$(".edit_task").attr("action", "");
+		alert ("doc ready");
+		$('.edit_task').unbind('submit');
 	$(".edit_task").bind('submit',function() {
 		var output = $("textarea#output").val();
 		var ass = $("#assignmentId").val();
 		//alert (act + " " + output + " " + ass);
+		alert ("calling local");
 		$.ajax({
-			type : 'PUT',
 			url : act,
 			data : $('.edit_task').serialize(),
 			success : function(response) {
@@ -21,6 +20,7 @@ $(document).ready(function() {
 	            alert("submmiting to mturk from edit");
 	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
 	            alert ("ac is" + ac);
+	            alert("calling mturk");
 				$(".edit_task").attr("action", ac);
 				$('.edit_task').submit();
 			}
