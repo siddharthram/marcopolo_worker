@@ -12,6 +12,7 @@ $(document).ready(function() {
 		//alert (act + " " + output + " " + ass);
 		alert ("calling local");
 		$.ajax({
+			type: 'PUT',
 			url : act,
 			data : $('.edit_task').serialize(),
 			success : function(response) {
