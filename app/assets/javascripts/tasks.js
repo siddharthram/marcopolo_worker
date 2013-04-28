@@ -39,7 +39,7 @@ return;
 
 function doClick() {
 			var act = $(".edit_task").attr("action");
-			alert ("put goes to " + act);
+			alert ("yo, put goes to " + act);
 			$.ajax({
 				type: 'PUT',
 				url : act,
@@ -56,4 +56,3 @@ function doClick() {
 			}
 		});
 		}
-		
