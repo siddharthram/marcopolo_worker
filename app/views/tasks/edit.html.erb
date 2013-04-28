@@ -99,7 +99,7 @@ $(document).ready(function() {
 <!--
 <%= f.submit "Done", class: "btn btn-large btn-primary"%>
 -->
-<button_to "Done", :onclick => class: "btn btn-large btn-primary"%>
+<button_to "Done", :onclick => doClick(), class: "btn btn-large btn-primary"%>
 		<%end%>
 
 <%= link_to 'Show', @task %> |
