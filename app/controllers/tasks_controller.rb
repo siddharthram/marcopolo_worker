@@ -48,6 +48,9 @@ def preview
   @server = params[:id]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
+  @hit = params[:hitId]
+  @worker = params[:workerId]
+
   @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true )  
 
   id = params[:id]
@@ -57,7 +60,7 @@ def preview
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: id, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
+      redirect_to action: :edit, id: id, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
       #preview mode
       puts "=============PREVIEW MODE=================="
@@ -97,7 +100,10 @@ def preview
   @server = params[:serverUniqueRequestId]
   @assignment = params[:assignmentId]
   @imagelocation = params[:imageUrl]
-  puts "**********Task id is" + params[:id] 
+  @worker = params[:workerId]
+  @hit = params[:hitId]
+
+  puts "**********Task id is" + params[:id]  + @worker.to_s + @hit.to_s
  #xim_id = params[:id]
   if (current_user == nil)
     #mturk job - look up by xim_id
