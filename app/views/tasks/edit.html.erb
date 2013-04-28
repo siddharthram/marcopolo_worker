@@ -2,6 +2,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	$(".edit_task").attr("action", "");
 	$(".edit_task").bind('submit',function() {
 		alert ("YO!!");
 		$.ajax({
@@ -9,13 +10,8 @@ $(document).ready(function() {
 			url : '/tasks/744',
 			//data : $('#foo').serialize(),
 			success : function(response) {
-				$('#form_result').html(response);
+				//$('#form_result').html(response);
 				$('.edit_task').unbind('submit');
-				
-	          //this is the redirect
-	          //bla = $('input[id=q]').val();
-	          //alert(bla);
-	        //  window.location.href='https://www.google.com/search?q=' + bla;
 	        alert("submmiting to mturk from edit");
 				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?favoriteColor=blue&favoriteNumber=7&");
 				$('.edit_task').submit();
@@ -52,8 +48,7 @@ $(document).ready(function() {
 
 <div class="container">
 	<div class="row imagediv">
-		
-		<%= form_tag('/task',  :remote => true) do |f| %>
+		<%= form_tag do %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>
@@ -67,11 +62,9 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
-<%= submit_tag "Done", class: "btn btn-large btn-primary"%>
+<%= f.submit "Done", class: "btn btn-large btn-primary"%>
 		<%end%>
 
-<!--
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>
--->
 
