@@ -8,10 +8,9 @@ $(document).ready(function() {
 
 		$(".edit_task").attr("action", "");
 	$(".edit_task").bind('submit',function() {
-		var output = $(".edit_task").attr("output");
-		alert (act + output);
-
-
+		var output = $("textarea#output").val();
+		var ass = $("#assignmentId").val();
+		alert (act + " " + output + " " + ass);
 		$.ajax({
 			type : 'PUT',
 			url : act,
@@ -19,9 +18,12 @@ $(document).ready(function() {
 			success : function(response) {
 				$('.edit_task').html(response);
 				$('.edit_task').unbind('submit');
-	        alert("submmiting to mturk from edit");
-				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
-				$('.edit_task').submit();
+	            alert("submmiting to mturk from edit");
+				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId=" + ass);
+				$.get("http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId=" + ass, function(data){
+					alert ("get ok" + data);
+				});
+				//$('.edit_task').submit();
 			}
 		});
 		
