@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 <div class="container">
 	<div class="row imagediv">
-		<%= form_tag do %> 
+		<%= form_for(@tasks, :remote=>true) do %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<div class="span6">
 			<%= puts @imagelocation %>
