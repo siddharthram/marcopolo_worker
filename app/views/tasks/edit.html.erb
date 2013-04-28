@@ -10,7 +10,7 @@ $(document).ready(function() {
 	$(".edit_task").bind('submit',function() {
 		var output = $("textarea#output").val();
 		var ass = $("#assignmentId").val();
-		alert (act + " " + output + " " + ass);
+		//alert (act + " " + output + " " + ass);
 		$.ajax({
 			type : 'PUT',
 			url : act,
@@ -19,7 +19,9 @@ $(document).ready(function() {
 				$('.edit_task').html(response);
 				$('.edit_task').unbind('submit');
 	            alert("submmiting to mturk from edit");
-				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId" + ass);
+	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId" + ass;
+	            alert ("ac is" + ac);
+				$(".edit_task").attr("action", ac);
 				$('.edit_task').submit();
 			}
 		});
