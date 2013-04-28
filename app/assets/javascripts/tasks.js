@@ -45,7 +45,7 @@ function doClick() {
 				url : act,
 				data : $('.edit_task').serialize(),
 				success : function(response) {
-					$('.edit_task').html(response);
+					//$('.edit_task').html(response);
 					//$('.edit_task').unbind('submit');
 	            	alert("submmiting to mturk from edit");
 	            	var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
