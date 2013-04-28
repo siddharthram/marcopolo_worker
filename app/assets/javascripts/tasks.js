@@ -37,22 +37,3 @@ return false;
 return;
 }
 
-function doClick() {
-			var act = $(".edit_task").attr("action");
-			alert ("put goes to " + act);
-			$.ajax({
-				type: 'PUT',
-				url : act,
-				data : $('.edit_task').serialize(),
-				success : function(response) {
-					$('.edit_task').html(response);
-					//$('.edit_task').unbind('submit');
-	            	alert("submmiting to mturk from edit");
-	            	var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
-	            	alert ("ac is" + ac);
-	            	alert("calling mturk");
-					$(".edit_task").attr("action", ac);
-					$('.edit_task').submit();
-			}
-		});
-		}
