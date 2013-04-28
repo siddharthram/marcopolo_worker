@@ -13,18 +13,20 @@ var myform = $(formtag).serialize();
 //alert ("in JS with " + myloc + " " + mydata);
 
 //$(formtag).attr("disabled", true);
-/*var req = $.ajax({
-  			url: myloc,
-  			type: "put",
-  			data: mydata
-  		});
 
-var req = $.ajax({
-  			url: myloc,
-  			type: "post"
-  			//data: mydata
-  		});
-  */
+
+// var req = $.ajax({
+//   			url: myloc,
+//   			type: "put",
+//   			data: mydata
+//   		});
+
+// var req = $.ajax({
+//   			url: myloc,
+//   			type: "post"
+//   			//data: mydata
+//   		});
+
 //  sendToTurk();
   //$(formtag).attr("action","http://workersandbox.mturk.com/mturk/externalSubmit");
   //$(formtag).submit(); 
@@ -37,7 +39,6 @@ var req = $.ajax({
   req.fail(function(response, ts, error){
   alert("failed" +ts + error);
 });
-*/
 
 <% else %>
 window.location.replace("/");
