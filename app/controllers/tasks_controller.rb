@@ -183,8 +183,8 @@ def preview
 
     #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect
     
-    #r = HTTParty.post(@@base + '/task/submit', @options).inspect
-    #puts "submit response from server"
+    r = HTTParty.post(@@base + '/task/submit', @options).inspect
+    puts "submit response from server" + r
     
 
     #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
@@ -194,8 +194,8 @@ def preview
     #puts "done with tasks.. getting the next one"
     puts "FIRST IS=====" + Task.first.to_s
     
-#alert ("opt is " + opt);
-#$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",opt,function()
+#alert ("opt is " + @options);
+#$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",@options,function()
  # {alert("posted to server")});
 #$(form).submit(data, function(d) { alert("retuned " + d) });
 

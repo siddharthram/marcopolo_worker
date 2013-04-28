@@ -2,18 +2,22 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+		var act = $(".edit_task").attr("action");
+		var output = $(".edit_task").attr("output");
+		alert (act + output);
+
+
 		$(".edit_task").attr("action", "");
 	$(".edit_task").bind('submit',function() {
-		alert ("YO!!");
 		$.ajax({
 			type : 'PUT',
-			url : '/tasks/744',
-			//data : $('#foo').serialize(),
+			url : act,
+			data : $('.edit_task').serialize(),
 			success : function(response) {
-				$('#form_result').html(response);
+				$('.edit_task').html(response);
 				$('.edit_task').unbind('submit');
 	        alert("submmiting to mturk from edit");
-				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?favoriteColor=blue&favoriteNumber=7&");
+				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit");
 				$('.edit_task').submit();
 			}
 		});
