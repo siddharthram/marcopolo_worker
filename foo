@@ -2,3 +2,771 @@ GET /task/open
 User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.1.0 zlib/1.2.3    libidn/1.18 libssh2/1.2.2
 Host: xxx.xxx.xxx.xxx:9100
 Accept: */*
+
+{
+  "log": {
+    "version": "1.2",
+    "creator": {
+      "name": "WebInspector",
+      "version": "537.31"
+    },
+    "pages": [
+      {
+        "startedDateTime": "2013-04-28T16:09:22.239Z",
+        "id": "page_11",
+        "title": "https://workersandbox.mturk.com/mturk/accept?hitId=2FWPLSP75KLP0YDW8B8QHQVJZYITZV&prevHitSubmitted=false&prevRequester=ximly+ximly&requesterId=A1JQDJMEFUMJK8&prevReward=USD0.05&hitAutoAppDelayInSeconds=1296000&groupId=2AE0XULRGNTED5GFXYWFS7N626A5R7&signature=Tq8CQVG2CkiO9BQd9WIdIptDv34%3D&%2Faccept.x=28&%2Faccept.y=11",
+        "pageTimings": {
+          "onContentLoad": 1118,
+          "onLoad": 8029
+        }
+      }
+    ],
+    "entries": [
+      {
+        "startedDateTime": "2013-04-28T16:09:39.104Z",
+        "time": 1313,
+        "request": {
+          "method": "PUT",
+          "url": "http://ximly.herokuapp.com/tasks/827",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Cookie",
+              "value": "_ximly_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJTc3ZTk0ODA5MmE1MzRlYTJlZmMzY2UyNDJmMDhhYTU2BjsAVEkiE3VzZXJfcmV0dXJuX3RvBjsARkkiDy90YXNrcy83NDQGOwBGSSIQX2NzcmZfdG9rZW4GOwBGSSIxZXNWUm1DUTZyMjB4YjBJb3hrMVpFUjVQeCswMGxZSzZBeWNLYzBLeU10cz0GOwBG--f49d9648fcdb23483d47eb662696169350c7c730; __utma=57388963.1818921070.1365814776.1367118104.1367165169.15; __utmb=57388963.4.10.1367165169; __utmc=57388963; __utmz=57388963.1365814776.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)"
+            },
+            {
+              "name": "Origin",
+              "value": "http://ximly.herokuapp.com"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip,deflate,sdch"
+            },
+            {
+              "name": "X-CSRF-Token",
+              "value": "esVRmCQ6r20xb0Ioxk1ZER5Px+00lYK6AycKc0KyMts="
+            },
+            {
+              "name": "Host",
+              "value": "ximly.herokuapp.com"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.8"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Referer",
+              "value": "http://ximly.herokuapp.com/tasks/656c9781-bd36-4aed-bcad-303e96e3c914/edit?assignmentId=258ULF395SW9HIV8C4EYQJBYG40DRZ&imageUrl=https%3A%2F%2Fs3.amazonaws.com%2Fximly_test1%2F656c9781-bd36-4aed-bcad-303e96e3c914.png&serverUniqueRequestId=656c9781-bd36-4aed-bcad-303e96e3c914"
+            },
+            {
+              "name": "X-Requested-With",
+              "value": "XMLHttpRequest"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "73"
+            },
+            {
+              "name": "DNT",
+              "value": "1"
+            },
+            {
+              "name": "Accept-Charset",
+              "value": "ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "_ximly_session",
+              "value": "BAh7CEkiD3Nlc3Npb25faWQGOgZFRkkiJTc3ZTk0ODA5MmE1MzRlYTJlZmMzY2UyNDJmMDhhYTU2BjsAVEkiE3VzZXJfcmV0dXJuX3RvBjsARkkiDy90YXNrcy83NDQGOwBGSSIQX2NzcmZfdG9rZW4GOwBGSSIxZXNWUm1DUTZyMjB4YjBJb3hrMVpFUjVQeCswMGxZSzZBeWNLYzBLeU10cz0GOwBG--f49d9648fcdb23483d47eb662696169350c7c730",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "__utma",
+              "value": "57388963.1818921070.1365814776.1367118104.1367165169.15",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "__utmb",
+              "value": "57388963.4.10.1367165169",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "__utmc",
+              "value": "57388963",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "__utmz",
+              "value": "57388963.1365814776.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 1331,
+          "bodySize": 73,
+          "postData": {
+            "mimeType": "application/x-www-form-urlencoded; charset=UTF-8",
+            "text": "utf8=%E2%9C%93&assignmentId=258ULF395SW9HIV8C4EYQJBYG40DRZ&output=YO+MAMA",
+            "params": [
+              {
+                "name": "utf8",
+                "value": "%E2%9C%93"
+              },
+              {
+                "name": "assignmentId",
+                "value": "258ULF395SW9HIV8C4EYQJBYG40DRZ"
+              },
+              {
+                "name": "output",
+                "value": "YO+MAMA"
+              }
+            ]
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "X-Runtime",
+              "value": "0.377149"
+            },
+            {
+              "name": "Date",
+              "value": "Sun, 28 Apr 2013 16:09:39 GMT"
+            },
+            {
+              "name": "X-Rack-Cache",
+              "value": "invalidate, pass"
+            },
+            {
+              "name": "Server",
+              "value": "WEBrick/1.3.1 (Ruby/1.9.3/2013-02-22)"
+            },
+            {
+              "name": "Etag",
+              "value": "\"e106b8a388f8cf040b127cbfdf773370\""
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/javascript; charset=utf-8"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=0, private, must-revalidate"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "1284"
+            },
+            {
+              "name": "X-Request-Id",
+              "value": "c164748150e868b40522f153911b4b80"
+            },
+            {
+              "name": "X-Ua-Compatible",
+              "value": "IE=Edge,chrome=1"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 1284,
+            "mimeType": "text/javascript",
+            "compression": -1
+          },
+          "redirectURL": "",
+          "headersSize": 425,
+          "bodySize": 1285
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": -1,
+          "connect": -1,
+          "send": 0,
+          "wait": 1311,
+          "receive": 1,
+          "ssl": -1
+        },
+        "pageref": "page_11"
+      },
+      {
+        "startedDateTime": "2013-04-28T16:09:42.327Z",
+        "time": 343,
+        "request": {
+          "method": "GET",
+          "url": "http://workersandbox.mturk.com/mturk/externalSubmit?",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "DNT",
+              "value": "1"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip,deflate,sdch"
+            },
+            {
+              "name": "Host",
+              "value": "workersandbox.mturk.com"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.8"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            },
+            {
+              "name": "Referer",
+              "value": "http://ximly.herokuapp.com/tasks/656c9781-bd36-4aed-bcad-303e96e3c914/edit?assignmentId=258ULF395SW9HIV8C4EYQJBYG40DRZ&imageUrl=https%3A%2F%2Fs3.amazonaws.com%2Fximly_test1%2F656c9781-bd36-4aed-bcad-303e96e3c914.png&serverUniqueRequestId=656c9781-bd36-4aed-bcad-303e96e3c914"
+            },
+            {
+              "name": "Cookie",
+              "value": "clientOffset=-332"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Accept-Charset",
+              "value": "ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "clientOffset",
+              "value": "-332",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 737,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sun, 28 Apr 2013 16:09:42 GMT"
+            },
+            {
+              "name": "Server",
+              "value": "Server"
+            },
+            {
+              "name": "Connection",
+              "value": "Keep-Alive"
+            },
+            {
+              "name": "Keep-Alive",
+              "value": "timeout=2, max=20"
+            },
+            {
+              "name": "Content-Length",
+              "value": "217"
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/html;charset=UTF-8"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 217,
+            "mimeType": "text/html",
+            "compression": 0
+          },
+          "redirectURL": "",
+          "headersSize": 187,
+          "bodySize": 217
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": 133,
+          "connect": 106,
+          "send": 0,
+          "wait": 102,
+          "receive": 1,
+          "ssl": -1
+        },
+        "pageref": "page_11"
+      },
+      {
+        "startedDateTime": "2013-04-28T16:09:42.735Z",
+        "time": 109,
+        "request": {
+          "method": "POST",
+          "url": "https://workersandbox.mturk.com/mturk/externalSubmit",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Cookie",
+              "value": "clientOffset=-332; worker_state=ckttNUxadFRoNkVuZ3VHaUtHbWtLeHZCVVVzPTIwMTMwNDI4MDkyOVVzZXIuYWZ0ZXJTaWduSW5UYXJnZXR.c2lnbmluc3VjY2VzcyVVc2VyLmFmdGVyU2lnbkluUGFybXN.ck8wQUJYQS0lVXNlci5hdXRvQWNjZXB0RW5hYmxlZH5mYWxzZSVVc2VyLnRhaW50ZWRGbGFnfjA0MjglVXNlci50bHRkfjAlVXNlci51c2VyflUybGtaR2hoY25Sb0lGSmhiUS0tI2VKd0JZZ0NkL3dBQzRPZktRMmk5UE1aam5nTFJIenFyeGN4M2xDb3VqWWFnNWJ4RUpRYjhCQ25rSjRIRTl2dzFKWmlUZTk2bmVleEY4UFlrd01ueWZOSW85VzYxbDJycGh0V1hqNlFTcXZNSmpPeGdsQVF0RDVkTXNUUGI2VlROVEFnWU1ieUFsYXRTMHBJeXhBPT0jMTM2NzIwODM2MjQ4MyVVc2VyLnR1cmtTZWN1cmV.dHJ1ZSU-; JSESSIONID=0C4C896892539BD6CCC11B8E709BCD7D"
+            },
+            {
+              "name": "Origin",
+              "value": "http://workersandbox.mturk.com"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip,deflate,sdch"
+            },
+            {
+              "name": "Host",
+              "value": "workersandbox.mturk.com"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.8"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=0"
+            },
+            {
+              "name": "Referer",
+              "value": "http://workersandbox.mturk.com/mturk/externalSubmit?"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "0"
+            },
+            {
+              "name": "DNT",
+              "value": "1"
+            },
+            {
+              "name": "Accept-Charset",
+              "value": "ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "clientOffset",
+              "value": "-332",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "worker_state",
+              "value": "ckttNUxadFRoNkVuZ3VHaUtHbWtLeHZCVVVzPTIwMTMwNDI4MDkyOVVzZXIuYWZ0ZXJTaWduSW5UYXJnZXR.c2lnbmluc3VjY2VzcyVVc2VyLmFmdGVyU2lnbkluUGFybXN.ck8wQUJYQS0lVXNlci5hdXRvQWNjZXB0RW5hYmxlZH5mYWxzZSVVc2VyLnRhaW50ZWRGbGFnfjA0MjglVXNlci50bHRkfjAlVXNlci51c2VyflUybGtaR2hoY25Sb0lGSmhiUS0tI2VKd0JZZ0NkL3dBQzRPZktRMmk5UE1aam5nTFJIenFyeGN4M2xDb3VqWWFnNWJ4RUpRYjhCQ25rSjRIRTl2dzFKWmlUZTk2bmVleEY4UFlrd01ueWZOSW85VzYxbDJycGh0V1hqNlFTcXZNSmpPeGdsQVF0RDVkTXNUUGI2VlROVEFnWU1ieUFsYXRTMHBJeXhBPT0jMTM2NzIwODM2MjQ4MyVVc2VyLnR1cmtTZWN1cmV.dHJ1ZSU-",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "JSESSIONID",
+              "value": "0C4C896892539BD6CCC11B8E709BCD7D",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 1225,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "name": "Date",
+              "value": "Sun, 28 Apr 2013 16:09:42 GMT"
+            },
+            {
+              "name": "Server",
+              "value": "Server"
+            },
+            {
+              "name": "Vary",
+              "value": "Cookie"
+            },
+            {
+              "name": "Connection",
+              "value": "Keep-Alive"
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/html;charset=UTF-8"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "no-store"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "no-cache"
+            },
+            {
+              "name": "Cache-Control",
+              "value": "max-age=0"
+            },
+            {
+              "name": "Set-Cookie",
+              "value": "worker_state=OXZaYVBoaTRrcW9naEdEVjBNbm5iRmxyYlM0PTIwMTMwNDI4MDkyOVVzZXIuYWZ0ZXJTaWduSW5QYXJtc35yTzBBQlhBLSVVc2VyLmFmdGVyU2lnbkluVGFyZ2V0fnNpZ25pbnN1Y2Nlc3MlVXNlci5hdXRvQWNjZXB0RW5hYmxlZH5mYWxzZSVVc2VyLnRhaW50ZWRGbGFnfjA0MjglVXNlci51c2VyflUybGtaR2hoY25Sb0lGSmhiUS0tI2VKd0JZZ0NkL3dBQzRPZktRMmk5UE1aam5nTFJIenFyeGN4M2xDb3VqWWFnNWJ4RUpRYjhCQ25rSjRIRTl2dzFKWmlUZTk2bmVleEY4UFlrd01ueWZOSW85VzYxbDJycGh0V1hqNlFTcXZNSmpPeGdsQVF0RDVkTXNUUGI2VlROVEFnWU1ieUFsYXRTMHBJeXhBPT0jMTM2NzIwODM2MjQ4MyVVc2VyLnRsdGR.MCVVc2VyLnR1cmtTZWN1cmV.dHJ1ZSU-; Expires=Mon, 28-Apr-2014 16:09:42 GMT; Secure"
+            },
+            {
+              "name": "Set-Cookie",
+              "value": "JSESSIONID=49388948E81C86087DE93636CDAFC06A; Path=/; Secure; HttpOnly"
+            },
+            {
+              "name": "Keep-Alive",
+              "value": "timeout=2, max=20"
+            },
+            {
+              "name": "Content-Length",
+              "value": "652"
+            },
+            {
+              "name": "Expires",
+              "value": "Thu, 01 Jan 1970 00:00:00 GMT"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "worker_state",
+              "value": "OXZaYVBoaTRrcW9naEdEVjBNbm5iRmxyYlM0PTIwMTMwNDI4MDkyOVVzZXIuYWZ0ZXJTaWduSW5QYXJtc35yTzBBQlhBLSVVc2VyLmFmdGVyU2lnbkluVGFyZ2V0fnNpZ25pbnN1Y2Nlc3MlVXNlci5hdXRvQWNjZXB0RW5hYmxlZH5mYWxzZSVVc2VyLnRhaW50ZWRGbGFnfjA0MjglVXNlci51c2VyflUybGtaR2hoY25Sb0lGSmhiUS0tI2VKd0JZZ0NkL3dBQzRPZktRMmk5UE1aam5nTFJIenFyeGN4M2xDb3VqWWFnNWJ4RUpRYjhCQ25rSjRIRTl2dzFKWmlUZTk2bmVleEY4UFlrd01ueWZOSW85VzYxbDJycGh0V1hqNlFTcXZNSmpPeGdsQVF0RDVkTXNUUGI2VlROVEFnWU1ieUFsYXRTMHBJeXhBPT0jMTM2NzIwODM2MjQ4MyVVc2VyLnRsdGR.MCVVc2VyLnR1cmtTZWN1cmV.dHJ1ZSU-",
+              "expires": "2014-04-28T16:09:42.000Z",
+              "httpOnly": false,
+              "secure": true
+            },
+            {
+              "name": "JSESSIONID",
+              "value": "49388948E81C86087DE93636CDAFC06A",
+              "path": "/",
+              "expires": null,
+              "httpOnly": true,
+              "secure": true
+            }
+          ],
+          "content": {
+            "size": 652,
+            "mimeType": "text/html",
+            "compression": -42
+          },
+          "redirectURL": "",
+          "headersSize": 1008,
+          "bodySize": 694
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": -1,
+          "connect": -1,
+          "send": 0,
+          "wait": 107,
+          "receive": 1,
+          "ssl": -1
+        },
+        "pageref": "page_11"
+      },
+      {
+        "startedDateTime": "2013-04-28T16:09:42.884Z",
+        "time": 114,
+        "request": {
+          "method": "GET",
+          "url": "https://workersandbox.mturk.com/css/externalSubmit.css?v=0V4dEtvJW*ps5sUIujOAEw--",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "If-None-Match",
+              "value": "W/\"378-1366683952000\""
+            },
+            {
+              "name": "DNT",
+              "value": "1"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip,deflate,sdch"
+            },
+            {
+              "name": "Host",
+              "value": "workersandbox.mturk.com"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.8"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+            },
+            {
+              "name": "Accept",
+              "value": "text/css,*/*;q=0.1"
+            },
+            {
+              "name": "Referer",
+              "value": "https://workersandbox.mturk.com/mturk/externalSubmit"
+            },
+            {
+              "name": "Cookie",
+              "value": "JSESSIONID=49388948E81C86087DE93636CDAFC06A"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "If-Modified-Since",
+              "value": "Tue, 23 Apr 2013 02:25:52 GMT"
+            },
+            {
+              "name": "Accept-Charset",
+              "value": "ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+            }
+          ],
+          "queryString": [
+            {
+              "name": "v",
+              "value": "0V4dEtvJW*ps5sUIujOAEw--"
+            }
+          ],
+          "cookies": [
+            {
+              "name": "JSESSIONID",
+              "value": "49388948E81C86087DE93636CDAFC06A",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 612,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 304,
+          "statusText": "Not Modified",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sun, 28 Apr 2013 16:09:42 GMT"
+            },
+            {
+              "name": "ETag",
+              "value": "W/\"378-1366683952000\""
+            },
+            {
+              "name": "Server",
+              "value": "Server"
+            },
+            {
+              "name": "Connection",
+              "value": "Keep-Alive"
+            },
+            {
+              "name": "Keep-Alive",
+              "value": "timeout=2, max=20"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 378,
+            "mimeType": "text/css"
+          },
+          "redirectURL": "",
+          "headersSize": 166,
+          "bodySize": 0
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": -1,
+          "connect": -1,
+          "send": 0,
+          "wait": 111,
+          "receive": 2,
+          "ssl": -1
+        },
+        "pageref": "page_11"
+      },
+      {
+        "startedDateTime": "2013-04-28T16:09:42.888Z",
+        "time": 110,
+        "request": {
+          "method": "GET",
+          "url": "https://workersandbox.mturk.com/images/icon_alert.gif",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "If-None-Match",
+              "value": "W/\"246-1366683952000\""
+            },
+            {
+              "name": "DNT",
+              "value": "1"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip,deflate,sdch"
+            },
+            {
+              "name": "Host",
+              "value": "workersandbox.mturk.com"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.8"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+            },
+            {
+              "name": "Accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Referer",
+              "value": "https://workersandbox.mturk.com/mturk/externalSubmit"
+            },
+            {
+              "name": "Cookie",
+              "value": "JSESSIONID=49388948E81C86087DE93636CDAFC06A"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "If-Modified-Since",
+              "value": "Tue, 23 Apr 2013 02:25:52 GMT"
+            },
+            {
+              "name": "Accept-Charset",
+              "value": "ISO-8859-1,utf-8;q=0.7,*;q=0.3"
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "JSESSIONID",
+              "value": "49388948E81C86087DE93636CDAFC06A",
+              "expires": null,
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 569,
+          "bodySize": 0
+        },
+        "response": {
+          "status": 304,
+          "statusText": "Not Modified",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Date",
+              "value": "Sun, 28 Apr 2013 16:09:42 GMT"
+            },
+            {
+              "name": "ETag",
+              "value": "W/\"246-1366683952000\""
+            },
+            {
+              "name": "Server",
+              "value": "Server"
+            },
+            {
+              "name": "Connection",
+              "value": "Keep-Alive"
+            },
+            {
+              "name": "Keep-Alive",
+              "value": "timeout=2, max=20"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 246,
+            "mimeType": "image/gif"
+          },
+          "redirectURL": "",
+          "headersSize": 166,
+          "bodySize": 0
+        },
+        "cache": {},
+        "timings": {
+          "blocked": 0,
+          "dns": -1,
+          "connect": -1,
+          "send": 0,
+          "wait": 105,
+          "receive": 3,
+          "ssl": -1
+        },
+        "pageref": "page_11"
+      }
+    ]
+  }
+}
