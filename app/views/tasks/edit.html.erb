@@ -58,7 +58,7 @@ $(document).ready(function() {
 		<%= form_for(@task, :html => { :method => 'GET' }) do |f| %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<div class="span6">
-			<%= puts @im,agelocation %>
+			<%= puts @imagelocation %>
 			<%= link_to image_tag(@imagelocation), @imagelocation,
 			onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
 		</div>
