@@ -19,11 +19,8 @@ $(document).ready(function() {
 				$('.edit_task').html(response);
 				$('.edit_task').unbind('submit');
 	            alert("submmiting to mturk from edit");
-				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId=" + ass);
-				$.get("http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId=" + ass, function(data){
-					alert ("get ok" + data);
-				});
-				//$('.edit_task').submit();
+				$(".edit_task").attr("action", "http://workersandbox.mturk.com/mturk/externalSubmit?assignmentId" + ass);
+				$('.edit_task').submit();
 			}
 		});
 		
