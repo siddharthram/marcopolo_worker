@@ -3,9 +3,7 @@ function sendToTurk() {
 
 $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 	var $form = $(this);
-	alert ("form is" + $form);
 	var act = $(".edit_task").attr('action');
-	alert ("action "+ act);
 	var portal = act;
 	var mydata = $('.edit_task').serialize();
 	var req = $.ajax({ 
@@ -29,5 +27,5 @@ $(".edit_task").bind("ajax:success",function(evt,data,status,xhr) {
 
 return false;
 });
-
+}
 
