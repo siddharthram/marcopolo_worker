@@ -90,7 +90,7 @@
 			onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
 		</div>
 		<div class="span4">
-			<div class="output">
+			<div class="output outputdiv">
 				<%= text_area_tag :output, nil, :placeholder => "your work.."%>
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 <!--
 <%= f.submit "Done", class: "btn btn-large btn-primary"%>
 -->
-<div class="row outputdiv">
+<div class="row">
 	<div class="span8"> </div>
 	<div class="span2"> 
 		<%= tag "input", { "type" => "button", "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
