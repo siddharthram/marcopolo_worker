@@ -78,7 +78,7 @@
 -->
 
 	<div class="row-fluid">
-		<%= form_for(@task) do |f| %> 
+		<%= form_for(@task, :html => {:class => "form-horizontal"}) do |f| %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<%= hidden_field_tag :workerId, @worker %>
 		<%= hidden_field_tag :hitId, @hit %>
@@ -96,7 +96,7 @@
 -->
 <div class="row-fluid">
 	<div class="span8"> </div>
-	<div class="span2"> 
+	<div class="span2 form-actions"> 
 		<%= tag "input", { "type" => "button", "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 	</div>
 		<div class="span2"> </div>
