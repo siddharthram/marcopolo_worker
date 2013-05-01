@@ -132,6 +132,7 @@ def preview
 
     #@task.xim_id = params[:id].to_i
     # FIXME - hard coded image for now
+      render  :layout => 'noheader' #:layout => false # render the preivew with no layout
 
   end
 
