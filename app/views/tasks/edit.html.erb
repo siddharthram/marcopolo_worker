@@ -77,31 +77,20 @@
 </html>
 -->
 
-	<div class="row-fluid">
-		<%= form_for(@task, :html => {:class => "form-horizontal"}) do |f| %> 
+		<%= form_for(@task, :html => {:class => "form-inline"}) do |f| %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<%= hidden_field_tag :workerId, @worker %>
 		<%= hidden_field_tag :hitId, @hit %>
 
-		<div class="span8">
 			<%= link_to image_tag(@imagelocation), @imagelocation,
 			onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
-		</div>
-		<div class="span4">
 				<%= text_area_tag :output, nil, :placeholder => "your work.."%>
-		</div>
-	</div>
 <!--
 <%= f.submit "Done", class: "btn btn-large btn-primary"%>
 -->
-<div class="row-fluid">
-	<div class="span8"> </div>
-	<div class="span2 form-actions"> 
-		<%= tag "input", { "type" => "button", "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
-	</div>
-		<div class="span2"> </div>
 
-</div>
+		<%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
+
 
 <%end%>
 <!--
