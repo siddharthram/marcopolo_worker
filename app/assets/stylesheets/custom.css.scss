@@ -12,11 +12,11 @@ section {
   overflow: auto;
 }
 
-textarea {
-  resize: vertical;
-  height: 100%;
-  min-height: 100%;
-}
+#textarea {
+#  resize: vertical;
+#  height: 100%;
+#  min-height: 100%;
+#}
 
 .center {
   text-align: center;
