@@ -23,7 +23,7 @@
 				headers: {"Content-type" : "application/x-www-form-urlencoded"},
 				data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
 				success : function(response, status, xhr) {
-					console.log ("done sending to turk" + status);
+					console.log ("done sending to turk with %s", status);
 					//$('.edit_task').html(response);
 					//$('.edit_task').unbind('submit');
 	            	//alert("submmiting to mturk from edit");
@@ -36,7 +36,7 @@
 	            	$('.edit_task').submit();
 	            },
 	            error: function(response, status, xhr) {
-	            	console.log ("error" + status);
+	            	console.log ("error %s", status);
 	            }
 	        });
 		}
