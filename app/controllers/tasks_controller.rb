@@ -62,7 +62,7 @@ def preview
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: :id, format: @format, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
+      redirect_to action: :edit, id: @server, format: @format, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
       #preview mode
       puts "=============PREVIEW MODE=================="
