@@ -21,6 +21,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'tlsmail'
+gem 'httmultiparty'
 
 
 # Bundle edge Rails instead:

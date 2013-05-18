@@ -3,7 +3,8 @@ class TasksController < ApplicationController
   include TasksHelper
   #before_filter :authenticate_user!
   before_filter :authenticate_user!, :except => [:preview, :postview, :edit, :update]
-  include HTTParty
+  #include HTTParty
+  include HTTMultiParty
   format :json
   #base_uri 'localhost:8080'
   #@base = 'http://localhost:8080/MarcoPolo'
@@ -50,6 +51,7 @@ def preview
   @imagelocation = params[:imageUrl]
   @hit = params[:hitId]
   @worker = params[:workerId]
+  @format = params[:requestedResponseFormat]
 
   @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true )  
 
@@ -60,7 +62,7 @@ def preview
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: id, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
+      redirect_to action: :edit, id: id, format: @format, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
       #preview mode
       puts "=============PREVIEW MODE=================="
@@ -102,6 +104,12 @@ def preview
   @imagelocation = params[:imageUrl]
   @worker = params[:workerId]
   @hit = params[:hitId]
+  @attach = params[:attach]
+  @format = params[:format]
+
+  # testing
+  @format="ppt"
+
 
   puts "**********Task id is" + params[:id]  + @worker.to_s + @hit.to_s
  #xim_id = params[:id]
@@ -110,8 +118,6 @@ def preview
     @task = Task.find_by_xim_id(@server)
     puts 'imagelocation is' + @imagelocation
   else
-  # (current_user != nil)
-      # Then this is a private task, not mturk
       @task = Task.find_by_xim_id(params[:id])
       email = current_user.email.to_s
       xim_id= @task.xim_id.to_s
@@ -163,16 +169,23 @@ def preview
     @assignment = params[:assignmentId]
     @current_user = current_user
     @output = params[:output]
-
-    puts "output is " + @output.to_s
+    @attachment = params[:attachment][:file]
+    #puts "attachment = " + @attachment
+    #puts "output is " + @output.to_s
+    puts "server id" + @task.xim_id
     puts "assignement id = " + @assignment.to_s
+    upload_file = File.new(@attachment.tempfile, "rb")
+
+    #puts "uploaded" + upload_file.to_s
 
 
     @options = {
-      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+      :headers => {'Content-type' => 'multipart/form-data'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
-        :output => @output
+        :output => @output,
+        :attachment => upload_file
+
       }
     }
 
@@ -184,15 +197,11 @@ def preview
       }
     }
 
-    #format.js
-
-    #puts "CALLING OUT TO + " +  @@base
-
-    #r = HTTParty.post('http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit', options).inspect
-    
-    r = HTTParty.post(@@base + '/task/submit', @options).inspect
-    #puts "submit response from server" + r
-    
+    r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
+    puts "submit response from server" + r
+    respond_to do |format|
+      format.html { redirect_to root_url}
+    end
 
     #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
     #puts "response from turk is " + r

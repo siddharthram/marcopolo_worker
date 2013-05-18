@@ -5,11 +5,19 @@
 
 	function doClick() {
 		var act = $(".edit_task").attr("action");
-			//alert ("in the html - put goes to " + act);
+		//var filename = document.getElementById("attach").files[0];
+		//console.log ("file is" + filename);
+		//var reader = new FileReader();
+		//reader.readAsBinaryString(filename);
+		var contents;
+		//reader.onload(function(e) {
+	//		contents = e.target.result;
+		//});
+	//alert ("in the html - put goes to " + act);
 			$.ajax({
 				type: 'PUT',
 				url : act,
-				data : $('.edit_task').serialize(),
+				data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
 				success : function(response) {
 					//$('.edit_task').html(response);
 					//$('.edit_task').unbind('submit');
@@ -17,7 +25,9 @@
 	            	var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
 	            	//alert ("ac is" + ac);
 	            	//alert("calling mturk");
-	            	$(".edit_task").attr("action", ac);
+	            	//var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
+	            	//$(".edit_task").append(contents);
+	            	//$(".edit_task").attr("action", ac);
 	            	$('.edit_task').submit();
 	            }
 	        });
@@ -77,7 +87,7 @@
 </html>
 -->
 
-		<%= form_for(@task, :html => {:class => "form-inline"}) do |f| %> 
+		<%= form_for(@task, :html => {:class => "form-inline", :multipart => true}) do |f| %> 
 		<%= hidden_field_tag :assignmentId, @assignment %>
 		<%= hidden_field_tag :workerId, @worker %>
 		<%= hidden_field_tag :hitId, @hit %>
@@ -86,21 +96,30 @@
 			<%= link_to image_tag(@imagelocation), @imagelocation,
 			onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
 			</div>
-			<div class="span4">
-				<%= text_area_tag :output, nil, :placeholder => "your work..", :rows => "20", :cols => "30" %>
-			</div>
+			<% if (@format != "ppt") %>
+				<div class="span4">
+					<%= text_area_tag :output, nil, :placeholder => "your work..", :rows => "20", :cols => "30" %>
+				</div>
+			<% else %>
+				<div class = "span4">
+					<%= file_field(:attachment, :file, :class => 'file_input') %>
+				</div>
+			<%end%>
 		</div>
+<%= f.submit "Done", class: "btn btn-large btn-primary"%>
 
 <!--
-<%= f.submit "Done", class: "btn btn-large btn-primary"%>
--->
 	<div class ="row">
-		<div class="span10"> </div>
+		<div class="span2"> 
+			<input id="attach" type="file" />
+		</div>
+		<div class="span8"> </div>
+
 		<div class="span2">
 				<%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 		</div>
 	</div>
-
+-->
 <%end%>
 <!--
 <%= link_to 'Show', @task %> |
