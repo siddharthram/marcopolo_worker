@@ -4,7 +4,9 @@
 //$(document).ready(function() {
 
 	function doClick() {
-		var act = $(".edit_task").attr("action");
+		#var act = $(".edit_task").attr("action");
+	    var act = "http://workersandbox.mturk.com/mturk/externalSubmit";
+
 		//var filename = document.getElementById("attach").files[0];
 		//console.log ("file is" + filename);
 		//var reader = new FileReader();
@@ -14,7 +16,7 @@
 	//		contents = e.target.result;
 		//});
 	//alert ("in the html - put goes to " + act);
-	
+
 			$.ajax({
 				type: 'PUT',
 				url : act,
