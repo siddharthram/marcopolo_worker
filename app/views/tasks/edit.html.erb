@@ -20,9 +20,10 @@
 			$.ajax({
 				type: 'PUT',
 				url : act,
+				headers: {"Content-type" : "application/x-www-form-urlencoded"},
 				data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
 				success : function(response, status, xhr) {
-					alert ("done sending to turk" + status);
+					console.log ("done sending to turk" + status);
 					//$('.edit_task').html(response);
 					//$('.edit_task').unbind('submit');
 	            	//alert("submmiting to mturk from edit");
@@ -35,7 +36,7 @@
 	            	$('.edit_task').submit();
 	            }
 	            error: function(response, status, xhr) {
-	            	alert ("error" + status);
+	            	console.log ("error" + status);
 	            }
 	        });
 		}
