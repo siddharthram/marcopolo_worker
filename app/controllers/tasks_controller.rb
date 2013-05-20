@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    puts "sadfdsafd"
+    #puts "sadfdsafd"
     if current_user.try(:admin?)
       puts "YO, ADMIN!!!"
       page = params[:page]
