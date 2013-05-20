@@ -117,7 +117,7 @@
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 -->
 
-<%= f.submit "Done1", :onclick=>"doClick()", class: "btn btn-large btn-primary"%>
+<%= f.submit "Done1", :onclick=>"return doClick();", class: "btn btn-large btn-primary"%>
 
 
 <!--
