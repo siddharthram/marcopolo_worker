@@ -167,6 +167,8 @@ def preview
     puts "UPDATING...."
     @id = params[:id]
     @task = Task.find(params[:id])
+    puts "found task " + @task.to_s
+    
     @assignment = params[:assignmentId]
     @current_user = current_user
     @output = params[:output]
