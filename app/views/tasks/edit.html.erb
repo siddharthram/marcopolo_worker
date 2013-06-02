@@ -15,7 +15,7 @@
 		//reader.onload(function(e) {
 	//		contents = e.target.result;
 		//});
-	//alert ("in the html - put goes to " + act);
+	alert ("in the html - put goes to " + act);
 	$.ajax({
 		type: 'PUT',
 		url : act,
@@ -118,7 +118,7 @@
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 -->
 
-<%= submit_tag "Done!", :onsubmit=>"return doClick(); return false;", class: "btn btn-large btn-primary"%>
+<%= submit_tag "Yoo Done!", :onsubmit=>"doClick(); return false;", class: "btn btn-large btn-primary"%>
 
 
 <!--
