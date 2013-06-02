@@ -109,6 +109,7 @@ def preview
 
   # testing
   @format="ppt"
+  @id = params[:id]
 
 
   puts "**********Task id is" + params[:id]  + @worker.to_s + @hit.to_s

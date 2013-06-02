@@ -16,7 +16,6 @@
 	//		contents = e.target.result;
 		//});
 	//alert ("in the html - put goes to " + act);
-
 	$.ajax({
 		type: 'PUT',
 		url : act,
@@ -24,19 +23,21 @@
 		data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
 		success : function(response, status, xhr) {
 			<% if (current_user == nil) %> 
-				console.log ("done sending to update with %s", status);
+				alert("done sending to update with %s", status);
 				//$('.edit_task').html(response);
-				$('.edit_task').unbind('submit');
-	            alert("submmiting to mturk from edit");
+				//$('.edit_task').unbind('submit');
+	            //alert("submmiting to mturk from edit");
 	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
 	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
 	            $(".edit_task").attr("action", ac);
-	            $('.edit_task').submit();
+				//$('#id').attr("action", ac);
+	            $(".edit_task").submit();
 	          <% else %>
+	          alert ("from portal");
 	          <% end %>
 	         },
 	    error: function(response, status, xhr) {
-	           console.log ("error %s", status);
+	           alert("error " + status);
 	     }
 	 });
 }
@@ -94,7 +95,7 @@
 </html>
 -->
 
-<%= form_for(@task, :html => {:class => "form-inline", :multipart => true}) do |f| %> 
+-<%= form_for(@task, :html => {:class => "form-inline", :multipart => true}) do |f| %> 
 <%= hidden_field_tag :assignmentId, @assignment %>
 <%= hidden_field_tag :workerId, @worker %>
 <%= hidden_field_tag :hitId, @hit %>
@@ -117,7 +118,7 @@
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 -->
 
-<%= f.submit "Done1", :onclick=>"return doClick();", class: "btn btn-large btn-primary"%>
+<%= submit_tag "Done!", :onsubmit=>"return doClick(); return false;", class: "btn btn-large btn-primary"%>
 
 
 <!--
