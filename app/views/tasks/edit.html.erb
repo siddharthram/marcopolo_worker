@@ -95,7 +95,7 @@
 </html>
 -->
 
--<%= form_for(@task, :html => {:class => "form-inline", :multipart => true}) do |f| %> 
+-<%= form_for(@task, :html => {:multipart => true}) do |f| %> 
 <%= hidden_field_tag :assignmentId, @assignment %>
 <%= hidden_field_tag :workerId, @worker %>
 <%= hidden_field_tag :hitId, @hit %>
