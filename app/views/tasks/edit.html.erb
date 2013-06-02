@@ -118,7 +118,7 @@
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 -->
 
-<%= submit_tag "Yoo Done!", :onsubmit=>"doClick(); return false;", class: "btn btn-large btn-primary"%>
+<%= submit_tag "Yoo Done!", :onclick=>"doClick(); return false;", class: "btn btn-large btn-primary"%>
 
 
 <!--
