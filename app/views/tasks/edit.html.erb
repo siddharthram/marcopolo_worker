@@ -23,7 +23,7 @@
 		data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
 		success : function(response, status, xhr) {
 			<% if (current_user == nil) %> 
-				alert("done sending to update with %s", status);
+				alert("done sending to update with status" +  status);
 				//$('.edit_task').html(response);
 				//$('.edit_task').unbind('submit');
 	            //alert("submmiting to mturk from edit");
