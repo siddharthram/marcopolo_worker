@@ -110,7 +110,7 @@
 	</div>
 	<% else %>
 	<div class = "span4">
-		<%= file_field :attachment %>
+		<%= file_field_tag :attachment, :file, :class=>'file_input'%>
 	</div>
 	<%end%>
 </div>
