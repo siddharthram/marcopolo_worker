@@ -20,7 +20,7 @@
 		type: 'PUT',
 		url : act,
 		headers: {"Content-type" : "application/x-www-form-urlencoded"},
-		data : $('.edit_task').serialize(), //+'&filedata=' + NonFormValue,
+		data : $('.edit_task').formSerialize(), //+'&filedata=' + NonFormValue,
 		success : function(response, status, xhr) {
 			<% if (current_user == nil) %> 
 				alert("done sending to update with status" +  status);
