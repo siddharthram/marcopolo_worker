@@ -22,7 +22,7 @@ gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'tlsmail'
 gem 'httmultiparty'
-
+gem 'jquery-form-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
