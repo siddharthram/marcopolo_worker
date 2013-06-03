@@ -95,7 +95,7 @@
 </html>
 -->
 
--<%= form_for(@task, :html => {:multipart => true}) do |f| %> 
+-<%= form_for(@task, :html => {:multipart => true, :enctype => "multipart/form-data"}) do |f| %> 
 <%= hidden_field_tag :assignmentId, @assignment %>
 <%= hidden_field_tag :workerId, @worker %>
 <%= hidden_field_tag :hitId, @hit %>
