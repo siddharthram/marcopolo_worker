@@ -179,8 +179,10 @@ def preview
     puts "attachment" + @attachment.to_s
     puts "assignement id = " + @assignment.to_s
     #upload_file = File.new(@attachment, "rb")
-    upload_file = @attachment.read
-    #puts "uploaded" + upload_file.to_s
+    File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
+      file.write(@attachment.read)  
+    end
+      #puts "uploaded" + upload_file.to_s
 
 
     @options = {
