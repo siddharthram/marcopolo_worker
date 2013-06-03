@@ -172,7 +172,7 @@ def preview
     @assignment = params[:assignmentId]
     @current_user = current_user
     @output = params[:output]
-    @attachment = params[:attachment]
+    @attachment = params[:task][:attachment]
     #puts "attachment = " + @attachment
     #puts "output is " + @output.to_s
     puts "server id" + @task.xim_id
