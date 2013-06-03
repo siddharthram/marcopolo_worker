@@ -1,6 +1,8 @@
 <h1>Task Detail</h1>
 
 <script type="text/javascript">
+
+
 //$(document).ready(function() {
 
 	function doClick() {
@@ -16,7 +18,7 @@
 	//		contents = e.target.result;
 		//});
 	alert ("in the html - put goes to " + act);
-	$.ajaxForm({
+	$(".edit_task").ajaxForm({
 		type: 'PUT',
 		url : act,
 		headers: {"Content-type" : "application/x-www-form-urlencoded"},
