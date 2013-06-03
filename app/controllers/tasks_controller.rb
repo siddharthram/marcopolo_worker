@@ -168,14 +168,15 @@ def preview
     @id = params[:id]
     @task = Task.find(params[:id])
     puts "found task " + @task.to_s
-    
+
     @assignment = params[:assignmentId]
     @current_user = current_user
     @output = params[:output]
-    @attachment = params[:attachment][:file]
+    @attachment = params[:attachment]
     #puts "attachment = " + @attachment
     #puts "output is " + @output.to_s
     puts "server id" + @task.xim_id
+    puts "attachment" + @attachment.to_s
     puts "assignement id = " + @assignment.to_s
     upload_file = File.new(@attachment.tempfile, "rb")
 
