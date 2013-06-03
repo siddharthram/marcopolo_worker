@@ -10,7 +10,6 @@
 });
 
 	function ajaxFormSuccessHandler() {
-		<% if (@current_user == nil) %> 
 				alert("done sending to update with status" +  status);
 				//$('.edit_task').html(response);
 				//$('.edit_task').unbind('submit');
@@ -20,10 +19,6 @@
 	            $(".edit_task").attr("action", ac);
 				//$('#id').attr("action", ac);
 	            $(".edit_task").submit();
-	          <% else %>
-	          alert ("from portal");
-	          <% end %>
-
 	}
 
 	function ajaxFormErrorHandler () {
