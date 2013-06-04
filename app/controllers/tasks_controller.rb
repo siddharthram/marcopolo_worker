@@ -178,7 +178,7 @@ def preview
     puts "server id" + @task.xim_id
     puts "attachment" + @attachment.to_s
     puts "assignement id = " + @assignment.to_s
-    upload_file = @assignment.tempfile.to_path.to_s
+    upload_file = params[:task][:tempfile].to_path.to_s
     #upload_file = File.new(@attachment, "rb")
     #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
      # file.write(@attachment.read)  
