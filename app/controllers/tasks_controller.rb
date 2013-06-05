@@ -190,7 +190,8 @@ def preview
 
 
     @options = {
-      :headers => {'Content-type' => 'multipart/form-data'},
+      #:headers => {'Content-type' => 'multipart/form-data'},
+      :headers => {'Content-type' => 'application/octet-stream'},
       :body => {
         :serverUniqueRequestId => @task.xim_id,
         :output => @output,
