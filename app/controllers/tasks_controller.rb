@@ -180,7 +180,7 @@ def preview
     puts "assignement id = " + @assignment.to_s
     puts "task is" + params[:task].to_s
 
-    upload_file = File.read(params[:task][:attachment].tempfile.to_path).encode!('UTF-8', 'UTF-8', :invalid => :replace) 
+    upload_file = File.read(params[:task][:attachment].tempfile.to_path).encode!('UTF-8', :invalid => :replace) 
 
     #upload_file = File.new(@attachment, "rb")
     #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
