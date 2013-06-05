@@ -10,13 +10,14 @@
 });
 
 	function ajaxFormSuccessHandler() {
-				alert("done sending to update with status" +  status);
+				alert("done sending to update with status");
 				//$('.edit_task').html(response);
 				//$('.edit_task').unbind('submit');
 	            //alert("submmiting to mturk from edit");
 	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
 	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
 	            $(".edit_task").attr("action", ac);
+	            $(".edit_task").attr("type","POST");
 				//$('#id').attr("action", ac);
 	            $(".edit_task").submit();
 	}
