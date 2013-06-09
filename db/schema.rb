@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324225259) do
+ActiveRecord::Schema.define(:version => 20130609211522) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(:version => 20130324225259) do
 
   create_table "tasks", :force => true do |t|
     t.string   "xim_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "imageurl"
     t.string   "output"
-    t.boolean  "isturkjob",  :default => false
+    t.boolean  "isturkjob",        :default => false
+    t.string   "attachmentformat"
   end
 
   create_table "users", :force => true do |t|

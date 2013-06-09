@@ -23,7 +23,7 @@ class TasksController < ApplicationController
         response.parsed_response.each do |k, v|
           v.each do |a|
             puts "" + a.to_s
-            newTasks << Task.new(xim_id: a["serverUniqueRequestId"], imageurl: a["imageUrl"] )     
+            newTasks << Task.new(xim_id: a["serverUniqueRequestId"], isturkjob: false, imageurl: a["imageUrl"] , attachmentformat: a["requestedResponseFormat"])     
             puts "SAVING T.... " + t.to_s
           end
         end
@@ -51,9 +51,11 @@ def preview
   @imagelocation = params[:imageUrl]
   @hit = params[:hitId]
   @worker = params[:workerId]
-  @format = params[:requestedResponseFormat]
+  @attachmentformat = params[:requestedResponseFormat]
 
-  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true )  
+  puts "attachmentformat ==========> " + @attachmentformat
+
+  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
 
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
@@ -62,7 +64,7 @@ def preview
       # add new task and then display it
       t = Task.new(xim_id: @server, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: @server, format: @format, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
+      redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
       #preview mode
       puts "=============PREVIEW MODE=================="
@@ -105,10 +107,8 @@ def preview
   @worker = params[:workerId]
   @hit = params[:hitId]
   @attach = params[:attach]
-  @format = params[:format]
-
   # testing
-  @format="ppt"
+  #@format="ppt"
   @id = params[:id]
 
 
@@ -165,22 +165,58 @@ def preview
   def update
 
     puts "UPDATING...."
+    puts "PARAMS============" + params.to_s
     @id = params[:id]
     @task = Task.find(params[:id])
-    puts "found task " + @task.to_s
+    #puts "found task " + @task.to_s
 
     @assignment = params[:assignmentId]
     @current_user = current_user
+
     @output = params[:output]
-    @attachment = params[:task][:attachment]
+    @options = nil
+    @attachment = nil
+    if (params[:task])
+
+    ofile = params[:task][:attachment].original_filename
+    puts "ofile is +" + ofile.to_s
+    @fileext = File.extname(ofile)
+    @fileext = @fileext.sub(/^\./,'')
+    #upload_file = ""
+    end
+
+    if (params[:task] != nil )
+      puts "Adding PPT attachment..."
+      @attachment = params[:task][:attachment]
+
+    @options = {
+      #:headers => {'Content-type' => 'multipart/form-data'},
+      #:headers => {'Content-type' => 'application/octet-stream'},
+      :body => {
+        :serverUniqueRequestId => @task.xim_id,
+        :output => @output,
+        :attachmentFileExtension => @fileext,
+        :attachment => File.new(@attachment.tempfile.to_path)
+      }
+    }
+
+  else
+    @options = {
+      :body => {
+        :serverUniqueRequestId => @task.xim_id,
+        :output => @output,
+      }
+    }
+      #upload_file = File.read(params[:task][:attachment].tempfile.to_path).force_encoding("BINARY")
+    end
+
     #puts "attachment = " + @attachment
     #puts "output is " + @output.to_s
     puts "server id" + @task.xim_id
-    puts "attachment" + @attachment.to_s
+    #puts "attachment" + @attachment.tempfile.to_path.to_s
     puts "assignement id = " + @assignment.to_s
     puts "task is" + params[:task].to_s
 
-    upload_file = File.read(params[:task][:attachment].tempfile.to_path).force_encoding("BINARY")
 
     #upload_file = File.new(@attachment, "rb")
     #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
@@ -189,24 +225,15 @@ def preview
     #puts "uploaded" + upload_file.to_s
 
 
-    @options = {
-      #:headers => {'Content-type' => 'multipart/form-data'},
-      :headers => {'Content-type' => 'application/octet-stream'},
-      :body => {
-        :serverUniqueRequestId => @task.xim_id,
-        :output => @output,
-        :attachment => upload_file
 
-      }
-    }
 
-    @mturk = {
+   # @mturk = {
       #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
-      :body     => {
-        :assignmentId => @assignment,
-        :output => @output
-      }
-    }
+    #  :body     => {
+    #    :assignmentId => @assignment,
+    #    :output => @output
+    #  }
+    #}
 
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r

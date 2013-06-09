@@ -10,6 +10,8 @@
 });
 
 	function ajaxFormSuccessHandler() {
+		<% if (@task.isturkjob ) %>
+			// the submit to turk
 				alert("done sending to update with status");
 				//$('.edit_task').html(response);
 				//$('.edit_task').unbind('submit');
@@ -20,6 +22,8 @@
 	            $(".edit_task").attr("type","POST");
 				//$('#id').attr("action", ac);
 	            $(".edit_task").submit();
+	    <%end%>
+
 	}
 
 	function ajaxFormErrorHandler () {
@@ -107,7 +111,8 @@
 </html>
 -->
 
--<%= form_for(@task, :html => {:multipart => true}) do |f| %> 
+<%= form_for(@task, :html => {:multipart => true}) do |f| %> 
+
 <%= hidden_field_tag :assignmentId, @assignment %>
 <%= hidden_field_tag :workerId, @worker %>
 <%= hidden_field_tag :hitId, @hit %>
@@ -116,7 +121,7 @@
 		<%= link_to image_tag(@imagelocation), @imagelocation,
 		onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
 	</div>
-	<% if (@format != "ppt") %>
+	<% if (@task.attachmentformat != "ppt") %>
 	<div class="span4">
 		<%= text_area_tag :output, nil, :placeholder => "your work..", :rows => "20", :cols => "30" %>
 	</div>
@@ -130,7 +135,7 @@
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
 -->
 
-<%= submit_tag "Yoo Done!", class: "btn btn-large btn-primary"%>
+<%= submit_tag "Finished!", class: "btn btn-large btn-primary"%>
 
 
 <!--
