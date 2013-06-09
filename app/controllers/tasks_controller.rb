@@ -237,12 +237,15 @@ def preview
 
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
+    puts "turk job = " + @task.isturkjob
 
-    if (!@task.isturkjob)
+    if (@task.isturkjob == false)
     # redirect only if it is on the portal
     respond_to do |format|
       format.html { redirect_to root_url}
     end
+  else 
+    url_for(:only_path => true )
   end
     #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
     #puts "response from turk is " + r
