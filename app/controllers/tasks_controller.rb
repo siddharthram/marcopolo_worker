@@ -53,16 +53,16 @@ def preview
   @worker = params[:workerId]
   @attachmentformat = params[:requestedResponseFormat]
 
-  puts "attachmentformat ==========> " + @attachmentformat
-
+  #puts "attachmentformat ==========> " + @attachmentformat
   @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
+  #puts "task id " + @task.id
 
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
     puts "mturk - read to work on task - " + @assignment.to_s
     #task has been accepted
       # add new task and then display it
-      t = Task.new(xim_id: @server, imageurl: @imagelocation)
+      t = Task.new(xim_id: @server, isturkjob: true, attachmentformat: @attachmentformat, imageurl: @imagelocation)
       t.save     
       redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
@@ -212,10 +212,10 @@ def preview
 
     #puts "attachment = " + @attachment
     #puts "output is " + @output.to_s
-    puts "server id" + @task.xim_id
+    #puts "server id" + @task.xim_id
     #puts "attachment" + @attachment.tempfile.to_path.to_s
-    puts "assignement id = " + @assignment.to_s
-    puts "task is" + params[:task].to_s
+    #puts "assignement id = " + @assignment.to_s
+    #puts "task is" + params[:task].to_s
 
 
     #upload_file = File.new(@attachment, "rb")
@@ -237,7 +237,7 @@ def preview
 
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
-    puts "turk job = " + @task.isturkjob
+    puts "turk job = " + @task.isturkjob.to_s
 
     if (@task.isturkjob == false)
     # redirect only if it is on the portal
