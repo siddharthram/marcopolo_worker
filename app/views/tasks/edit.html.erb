@@ -23,13 +23,13 @@
 	            $(".edit_task").attr("action", ac);
 	            //var querystring = $('#assignmentId').val();
 	    		//querystring = "assignmentId=" + querystring;
-	    		$('#task_attachment').remove();
+	    		//$('#task_attachment').remove();
 	            //alert(querystring);
 	            var options = {
-	            	///data: querystring,
+	            	data: querystring,
 	            	type: 'get'
 	            };
-	            $(".edit_task").attr("type","GET");
+	            //$(".edit_task").attr("type","GET");
 				//$('#id').attr("action", ac);
 	            $(".edit_task").submit();
 	    <%end%>
