@@ -21,11 +21,12 @@
 	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
 	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
 	            $(".edit_task").attr("action", ac);
-	            var querystring = $('.edit_task').filter(function() { return $(this).val==="assignmentId";});
+	            var querystring = $('#assignmentId').val();
+	    		querystring = "assignmentId=" + querystring;
 	            alert(querystring);
 	            var options = {
 	            	data: querystring,
-	            	type: 'post',
+	            	type: 'post'
 	            };
 	            //$(".edit_task").attr("type","POST");
 				//$('#id').attr("action", ac);
