@@ -24,13 +24,15 @@
 	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
 	            $(".edit_task").attr("action", ac);
 	            
-	    		//$('#task_attachment').remove();
+	    		$('#task_attachment').remove();
 	            //alert(querystring);
 	            var options = {
 	            	//data: querystring,
 	            	type: 'get'
 	            };
-	            $(".edit_task").attr("type","get");
+	            //$(".edit_task").attr("type","get");
+	           $(".edit_task").attr("Content-Type","application/x-www-form-urlencoded");
+
 				//$('#id').attr("action", ac);
 				$('.edit_task').unbind('submit').submit();
 	            //$(".edit_task").submit();
