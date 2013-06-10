@@ -20,7 +20,7 @@
 	            //alert("submmiting to mturk from edit");
 	            var querystring = $('#assignmentId').val();
 	    		querystring = "?assignmentId=" + querystring;
-	            var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
+	            var ac = "https://workersandbox.mturk.com/mturk/externalSubmit";// + querystring;
 	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
 	            $(".edit_task").attr("action", ac);
 	            
@@ -30,7 +30,7 @@
 	            	//data: querystring,
 	            	type: 'get'
 	            };
-	            $(".edit_task").attr("type","GET");
+	            //$(".edit_task").attr("type","GET");
 				//$('#id').attr("action", ac);
 				$('.edit_task').unbind('submit').submit();
 	            //$(".edit_task").submit();
