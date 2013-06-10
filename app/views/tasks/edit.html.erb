@@ -29,10 +29,10 @@
 	            	///data: querystring,
 	            	type: 'get'
 	            };
-	            //$(".edit_task").attr("type","POST");
+	            $(".edit_task").attr("type","GET");
 				//$('#id').attr("action", ac);
 	            //$(".edit_task").submit();
-	            $('.edit_task').ajaxSubmit(options);
+	            $('.edit_task').ajaxSubmit();
 	    <%end%>
 	    submitdone = true;
 	}
