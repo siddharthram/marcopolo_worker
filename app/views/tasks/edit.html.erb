@@ -32,7 +32,8 @@
 	            };
 	            //$(".edit_task").attr("type","GET");
 				//$('#id').attr("action", ac);
-	            $(".edit_task").submit();
+				$('.edit_task').unbind('submit').submit();
+	            //$(".edit_task").submit();
 	    <%end%>
 	    submitdone = true;
 	}
