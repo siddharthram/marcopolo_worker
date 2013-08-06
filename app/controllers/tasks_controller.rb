@@ -241,6 +241,7 @@ def preview
 
     if (@task.isturkjob == false)
     # redirect only if it is on the portal
+    puts "sending to root_url"
     respond_to do |format|
       format.html { redirect_to root_url}
     end

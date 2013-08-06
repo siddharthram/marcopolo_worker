@@ -4,15 +4,15 @@
 	var submitdone = false;
 	$(document).ready(function() {
 	$('.edit_task').ajaxForm({
-		  dataType: "script",
-         success: ajaxFormSuccessHandler,
-         error: ajaxFormErrorHandler
+		  //dataType: "script",
+         success: ajaxFormSuccessHandler
+        error: ajaxFormErrorHandler
 		});
 });
 
 	function ajaxFormSuccessHandler() {
 		if (submitdone == false) {
-		<% if (@task.isturkjob ) %>
+		<% if (@task.isturkjob == true ) %>
 			// the submit to turk
 				//alert("done sending to update with status");
 				//$('.edit_task').html(response);
@@ -36,9 +36,12 @@
 				//$('#id').attr("action", ac);
 				$('.edit_task').unbind('submit').submit();
 	            //$(".edit_task").submit();
-	    <%end%>
+	    <%else%>
+	    		//alert("redirecting to root");
+	    		//window.location = "http://ximly.herokuapp.com"
+	     <%end%>
 	    submitdone = true;
-	}
+	} 
 
 	}
 
