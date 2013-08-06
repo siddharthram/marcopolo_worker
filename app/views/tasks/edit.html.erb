@@ -5,7 +5,7 @@
 	$(document).ready(function() {
 	$('.edit_task').ajaxForm({
 		  //dataType: "script",
-         success: ajaxFormSuccessHandler
+         success: ajaxFormSuccessHandler,
         error: ajaxFormErrorHandler
 		});
 });
@@ -47,6 +47,7 @@
 
 	function ajaxFormErrorHandler () {
 		//alert ("failure!");
+		window.console && console.log('ajaxform failure');
 	}
 
 
