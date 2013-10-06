@@ -28,7 +28,7 @@ class TasksController < ApplicationController
           img = job["imageUrl"]
           req = job["requestedResponseFormat"]
          # v.each do |a|
-            puts "" + a.to_s
+            puts "" + job.to_s
             newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)     
             puts "SAVING T.... " + t.to_s
          # end
