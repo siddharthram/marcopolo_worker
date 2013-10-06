@@ -20,12 +20,18 @@ class TasksController < ApplicationController
         puts "response = " + response.to_s
         Task.delete_all
         newTasks = []
-        response.parsed_response.each do |k, v|
-          v.each do |a|
+        #response.parsed_response.each do |k, v|
+        
+        statuses = response.parsed_response["taskStatuses"]
+        statuses.each do |job|
+          suri = job["serverUniqueRequestId"]
+          img = job["imageUrl"]
+          req = job["requestedResponseFormat"]
+         # v.each do |a|
             puts "" + a.to_s
-            newTasks << Task.new(xim_id: a["serverUniqueRequestId"], isturkjob: false, imageurl: a["imageUrl"] , attachmentformat: a["requestedResponseFormat"])     
+            newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)     
             puts "SAVING T.... " + t.to_s
-          end
+         # end
         end
         Task.import newTasks
       end
