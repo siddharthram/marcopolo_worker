@@ -3,7 +3,6 @@
 <script type="text/javascript">
 	var submitdone = false;
 	$(document).ready(function() {
-		alert ("doc ready");
 	$('.edit_task').ajaxForm({
 		  //dataType: "script",
          success: ajaxFormSuccessHandler,
@@ -12,14 +11,11 @@
 });
 
 	function ajaxFormSuccessHandler() {
-		alert ("handlig success");
 		if (submitdone == false) {
 		<% if (@task.isturkjob == true ) %>
 			// the submit to turk
-				alert("turk true done sending to update with status");
 				//$('.edit_task').html(response);
 				//$('.edit_task').unbind('submit');
-	            alert("submmiting to mturk from edit");
 	            var querystring = $('#assignmentId').val();
 	    		querystring = "?assignmentId=" + querystring;
 	            //var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
