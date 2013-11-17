@@ -18,7 +18,7 @@ class TasksController < ApplicationController
       if (page == nil )
         response = HTTParty.get(@@base + '/task/open')
         puts "response = " + response.to_s
-        Task.delete_all
+        #Task.delete_all
         newTasks = []
         #response.parsed_response.each do |k, v|
         
@@ -29,7 +29,12 @@ class TasksController < ApplicationController
           req = job["requestedResponseFormat"]
          # v.each do |a|
             puts "" + job.to_s
-            newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)     
+            if Task.exists?(xim_id: suri)
+              # do nothing
+            else
+              newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)
+            end 
+
             puts "SAVING T.... " + t.to_s
          # end
         end
@@ -49,6 +54,8 @@ class TasksController < ApplicationController
 end
 
 
+#Preview is called by Turk workers ONLY
+#so isturkjob is always set to true
 
 def preview
   puts "IN PREVIEW"
@@ -60,18 +67,26 @@ def preview
   @attachmentformat = params[:requestedResponseFormat]
 
   #puts "attachmentformat ==========> " + @attachmentformat
-  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
+  #@task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
   #puts "task id " + @task.id
 
   id = params[:id]
   if (@assignment != "ASSIGNMENT_ID_NOT_AVAILABLE")
     puts "mturk - read to work on task - " + @assignment.to_s
     #task has been accepted
-      # add new task and then display it
+    # create new task IF it does not exist 
+    # if it already exists, we add additional data that it is assigned to turk and lock it during edit
+
+    if Task.exists?(xim_id: @server)
+      puts "Task @server already exists"
+      t = Task.find_by_xim_id(@server)
+      t.isturkjob = true
+    else
       t = Task.new(xim_id: @server, isturkjob: true, attachmentformat: @attachmentformat, imageurl: @imagelocation)
       t.save     
-      redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
-    else 
+    end
+    redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
+  else 
       #preview mode
       puts "=============PREVIEW MODE=================="
       render  :layout => 'noheader' #:layout => false # render the preivew with no layout
@@ -121,15 +136,19 @@ def preview
   puts "**********Task id is" + params[:id]  + @worker.to_s + @hit.to_s
  #xim_id = params[:id]
   if (current_user == nil)
+    # Then this is a mturk job. There is no user.
+    # So we find the task using the xim_id
     #mturk job - look up by xim_id
     @task = Task.find_by_xim_id(@server)
-    puts 'imagelocation is' + @imagelocation
+    #puts 'imagelocation is' + @imagelocation
   else
+     # this is a local task ie done by a ximly worker
+     # from the worker portal
       @task = Task.find_by_xim_id(params[:id])
       email = current_user.email.to_s
       xim_id= @task.xim_id.to_s
       @imagelocation = @task.imageurl
-      puts "===sending data " + xim_id + " " + email
+      #puts "===sending data " + xim_id + " " + email
       #Lock the task..
       options = {
       :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
@@ -138,9 +157,11 @@ def preview
         :emailId => email
        }
      }
+     #local tasks need to be locked so it
+     #is unavailable to other workers
      r = HTTParty.post(@@base + '/task/lock', options).inspect
        #r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
-       puts "r= " + r.to_s
+       #puts "r= " + r.to_s
      end
 
     #@task.xim_id = params[:id].to_i
@@ -174,7 +195,7 @@ def preview
     puts "PARAMS============" + params.to_s
     @id = params[:id]
     @task = Task.find(params[:id])
-    #puts "found task " + @task.to_s
+    puts "found task " + @task.to_s
 
     @assignment = params[:assignmentId]
     @current_user = current_user
