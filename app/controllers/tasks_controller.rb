@@ -34,7 +34,6 @@ class TasksController < ApplicationController
             else
               newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)
             end 
-
             puts "SAVING T.... " + t.to_s
          # end
         end
@@ -265,8 +264,9 @@ def preview
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
     puts "turk job = " + @task.isturkjob.to_s
-
-    if (@task.isturkjob == false)
+    turkjob = @task.isturkjob
+    @task.destroy
+    if (turkjob == false)
     # redirect only if it is on the portal
     puts "sending to root_url"
     respond_to do |format|
