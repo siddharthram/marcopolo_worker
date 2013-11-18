@@ -23,23 +23,28 @@ class TasksController < ApplicationController
         #response.parsed_response.each do |k, v|
         
         statuses = response.parsed_response["taskStatuses"]
+        #
+        # For each response, check if the entry already exists in the local cache
+        # if not, add it - these are the new jobs since last check
+        # If yes, ignore - the task already exists
+
         statuses.each do |job|
           suri = job["serverUniqueRequestId"]
           img = job["imageUrl"]
           req = job["requestedResponseFormat"]
          # v.each do |a|
-            puts "" + job.to_s
-            if Task.exists?(xim_id: suri)
+         puts "" + job.to_s
+         if Task.exists?(xim_id: suri)
               # do nothing
             else
               newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)
             end 
             puts "SAVING T.... " + t.to_s
          # end
-        end
-        Task.import newTasks
-      end
-      puts "YO, TASK!!"
+       end
+       Task.import newTasks
+     end
+     puts "YO, TASK!!"
     #@tasks = Task.all
     @tasks = Task.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
@@ -52,9 +57,10 @@ class TasksController < ApplicationController
   end
 end
 
-
+#============================================
 #Preview is called by Turk workers ONLY
 #so isturkjob is always set to true
+#============================================
 
 def preview
   puts "IN PREVIEW"
@@ -64,6 +70,7 @@ def preview
   @hit = params[:hitId]
   @worker = params[:workerId]
   @attachmentformat = params[:requestedResponseFormat]
+  @turktext = "Ignore all the graphics in this image - just type the text content"
 
   #puts "attachmentformat ==========> " + @attachmentformat
   #@task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
@@ -80,9 +87,11 @@ def preview
       puts "Task @server already exists"
       t = Task.find_by_xim_id(@server)
       t.isturkjob = true
+      @turktext = "Create a powerpoint file with the diagram and text in it. You MUST submit a powerpoint file"
+      t.save
     else
       t = Task.new(xim_id: @server, isturkjob: true, attachmentformat: @attachmentformat, imageurl: @imagelocation)
-      t.save     
+      t.save
     end
     redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
   else 
@@ -120,13 +129,13 @@ def preview
   def edit
     puts "---------====ENTERING EDIT=========----"
     @task = nil
-     email = ""
-  @server = params[:serverUniqueRequestId]
-  @assignment = params[:assignmentId]
-  @imagelocation = params[:imageUrl]
-  @worker = params[:workerId]
-  @hit = params[:hitId]
-  @attach = params[:attach]
+    email = ""
+    @server = params[:serverUniqueRequestId]
+    @assignment = params[:assignmentId]
+    @imagelocation = params[:imageUrl]
+    @worker = params[:workerId]
+    @hit = params[:hitId]
+    @attach = params[:attach]
   # testing
   #@format="ppt"
   @id = params[:id]
@@ -134,40 +143,38 @@ def preview
 
   puts "**********Task id is" + params[:id]  + @worker.to_s + @hit.to_s
  #xim_id = params[:id]
-  if (current_user == nil)
-    # Then this is a mturk job. There is no user.
+ if (current_user == nil)
+    #
+    # Then this is a mturk job since There is no user id.
     # So we find the task using the xim_id
-    #mturk job - look up by xim_id
+    #  mturk job - look up by xim_id
+    #
     @task = Task.find_by_xim_id(@server)
-    #puts 'imagelocation is' + @imagelocation
   else
+     #
      # this is a local task ie done by a ximly worker
      # from the worker portal
-      @task = Task.find_by_xim_id(params[:id])
-      email = current_user.email.to_s
-      xim_id= @task.xim_id.to_s
-      @imagelocation = @task.imageurl
-      #puts "===sending data " + xim_id + " " + email
+     #
+     @task = Task.find_by_xim_id(params[:id])
+     email = current_user.email.to_s
+     xim_id= @task.xim_id.to_s
+     @imagelocation = @task.imageurl
+
+      #
       #Lock the task..
+      #Locking it makes it unavailable to other users
+      #
       options = {
-      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
-      :body => {
-        :serverUniqueRequestId => @task.xim_id,
-        :emailId => email
-       }
-     }
-     #local tasks need to be locked so it
-     #is unavailable to other workers
-     r = HTTParty.post(@@base + '/task/lock', options).inspect
-       #r = HTTParty.get(@@base + '/task/lock?' +  "serverUniqueRequestId=" + xim_id + "&emailId=" + email).inspect
-       #puts "r= " + r.to_s
-     end
-
-    #@task.xim_id = params[:id].to_i
-    # FIXME - hard coded image for now
-      render  :layout => 'noheader' #:layout => false # render the preivew with no layout
-
+        :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+        :body => {
+          :serverUniqueRequestId => @task.xim_id,
+          :emailId => email
+        }
+      }
+      r = HTTParty.post(@@base + '/task/lock', options).inspect
   end
+      render  :layout => 'noheader' #:layout => false # render the preivew with no layout
+end
 
   # POST /tasks
   # POST /tasks.json
@@ -204,16 +211,16 @@ def preview
     @attachment = nil
     if (params[:task])
 
-    ofile = params[:task][:attachment].original_filename
-    puts "ofile is +" + ofile.to_s
-    @fileext = File.extname(ofile)
-    @fileext = @fileext.sub(/^\./,'')
+      ofile = params[:task][:attachment].original_filename
+      puts "ofile is +" + ofile.to_s
+      @fileext = File.extname(ofile)
+      @fileext = @fileext.sub(/^\./,'')
     #upload_file = ""
-    end
+  end
 
-    if (params[:task] != nil )
-      puts "Adding PPT attachment..."
-      @attachment = params[:task][:attachment]
+  if (params[:task] != nil )
+    puts "Adding PPT attachment..."
+    @attachment = params[:task][:attachment]
 
     @options = {
       #:headers => {'Content-type' => 'multipart/form-data'},
@@ -233,22 +240,7 @@ def preview
         :output => @output,
       }
     }
-      #upload_file = File.read(params[:task][:attachment].tempfile.to_path).force_encoding("BINARY")
-    end
-
-    #puts "attachment = " + @attachment
-    #puts "output is " + @output.to_s
-    #puts "server id" + @task.xim_id
-    #puts "attachment" + @attachment.tempfile.to_path.to_s
-    #puts "assignement id = " + @assignment.to_s
-    #puts "task is" + params[:task].to_s
-
-
-    #upload_file = File.new(@attachment, "rb")
-    #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
-     # file.write(@attachment.read)  
-    #end
-    #puts "uploaded" + upload_file.to_s
+  end
 
 
 
@@ -275,7 +267,60 @@ def preview
   else 
     url_for(:only_path => true )
   end
-    #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
+
+
+end
+
+def notify
+  puts "--=----IN NOTIFY===-====="
+  @id = params[:id]
+  @task = Task.find(params[:id])
+  output = params[:output]
+
+  puts "ID is " + @id.to_s+ " task is " + @task.to_s + " output is " + @output
+  @options = {
+    :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
+    :body => {
+      :serverUniqueRequestId => @task.xim_id,
+      :output => output
+    }
+  }
+  r = HTTParty.post(@@base + '/task/submit', @options).inspect
+  puts "submit response from server"
+end
+
+
+  # DELETE /tasks/1
+  # DELETE /tasks/1.json
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+    respond_to do |format|
+      format.html { redirect_to tasks_url }
+      format.json { head :no_content }
+    end
+  end
+end
+
+
+ #upload_file = File.read(params[:task][:attachment].tempfile.to_path).force_encoding("BINARY")
+
+    #puts "attachment = " + @attachment
+    #puts "output is " + @output.to_s
+    #puts "server id" + @task.xim_id
+    #puts "attachment" + @attachment.tempfile.to_path.to_s
+    #puts "assignement id = " + @assignment.to_s
+    #puts "task is" + params[:task].to_s
+
+
+    #upload_file = File.new(@attachment, "rb")
+    #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
+     # file.write(@attachment.read)  
+    #end
+    #puts "uploaded" + upload_file.to_s
+
+     #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
     #puts "response from turk is " + r
     #puts "response ======" + r.to_s
     #getTasks
@@ -316,38 +361,4 @@ def preview
       format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
-=end
-
-end
-
-def notify
-  puts "--=----IN NOTIFY===-====="
-    @id = params[:id]
-    @task = Task.find(params[:id])
-    output = params[:output]
-
-    puts "ID is " + @id.to_s+ " task is " + @task.to_s + " output is " + @output
-  @options = {
-      :headers => {'Content-type' => 'application/x-www-form-urlencoded'},
-      :body => {
-        :serverUniqueRequestId => @task.xim_id,
-        :output => output
-      }
-    }
-  r = HTTParty.post(@@base + '/task/submit', @options).inspect
-  puts "submit response from server"
-end
-
-
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
-  def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.json { head :no_content }
-    end
-  end
-end
+  =end
