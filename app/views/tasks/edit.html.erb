@@ -11,6 +11,14 @@
 });
 
 	function ajaxFormSuccessHandler() {
+		alert ("checking ppt");
+		if (@task.isppt == false) {
+			alert ("your document must be a ppt or pptx");
+			submitdone = false;
+			return;
+		}
+		else {
+			alert ("accepting powerpoint");
 		if (submitdone == false) {
 		<% if (@task.isturkjob == true ) %>
 			// the submit to turk
@@ -43,6 +51,7 @@
 	} 
 
 	}
+}
 
 	function ajaxFormErrorHandler () {
 		//alert ("failure!");

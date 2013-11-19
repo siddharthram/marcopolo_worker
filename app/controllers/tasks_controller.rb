@@ -215,6 +215,20 @@ end
       puts "ofile is +" + ofile.to_s
       @fileext = File.extname(ofile)
       @fileext = @fileext.sub(/^\./,'')
+      if (@fileext == "ppt" || @fileext == "pptx")
+        #
+        # then we are good- do nothing
+        # 
+        @task.isppt = true
+      else
+        #
+        # return invalid response
+        #
+        puts "*****PPT is false"
+        @task.isppt = false
+        url_for(:only_path => true )
+      end
+
     #upload_file = ""
   end
 
@@ -243,16 +257,6 @@ end
   end
 
 
-
-
-   # @mturk = {
-      #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
-    #  :body     => {
-    #    :assignmentId => @assignment,
-    #    :output => @output
-    #  }
-    #}
-
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
     puts "turk job = " + @task.isturkjob.to_s
@@ -265,6 +269,10 @@ end
       format.html { redirect_to root_url}
     end
   else 
+    #
+    # for mturks. returns the relative url because of the option
+    #:only_path - If true, returns the relative URL (omitting the protocol, host name, and port) (false by default).
+    #
     url_for(:only_path => true )
   end
 
