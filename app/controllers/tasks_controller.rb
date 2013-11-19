@@ -219,13 +219,13 @@ end
         #
         # then we are good- do nothing
         # 
-        @task.isppt = true
+        @isppt = true
       else
         #
         # return invalid response
         #
         puts "*****PPT is false"
-        @task.isppt = false
+        @isppt = false
         url_for(:only_path => true )
       end
 

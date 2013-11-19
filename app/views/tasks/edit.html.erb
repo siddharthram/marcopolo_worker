@@ -12,7 +12,7 @@
 
 	function ajaxFormSuccessHandler() {
 		alert ("checking ppt");
-		if (@task.isppt == false) {
+		if (<%@isppt == false%>) {
 			alert ("your document must be a ppt or pptx");
 			submitdone = false;
 			return;
