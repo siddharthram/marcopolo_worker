@@ -226,14 +226,16 @@ end
         #
         puts "*****PPT is false"
         @isppt = false
-        puts "returning..."
-        render url_for(:only_path => true )
+        #puts "returning..."
+        #render url_for(:only_path => true )
       end
 
     #upload_file = ""
   end
-
   if (params[:task] != nil )
+    #
+    # attachment
+    #
     puts "Adding PPT attachment..."
     @attachment = params[:task][:attachment]
 
@@ -249,6 +251,9 @@ end
     }
 
   else
+    #
+    # it is not an attachment
+    #
     @options = {
       :body => {
         :serverUniqueRequestId => @task.xim_id,
@@ -257,12 +262,17 @@ end
     }
   end
 
-
+if ((@isppt == true) || (params[:task] == nil))
+  #
+  # either there is an attachment and it is ppt, or 
+  # there is plain text. Either case, submit.
+  #
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
     puts "turk job = " + @task.isturkjob.to_s
     turkjob = @task.isturkjob
     @task.destroy
+  end
     if (turkjob == false)
     # redirect only if it is on the portal
     puts "sending to root_url"
