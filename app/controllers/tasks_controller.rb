@@ -282,7 +282,7 @@ if (turkjob == false)
     # for mturks. returns the relative url because of the option
     #:only_path - If true, returns the relative URL (omitting the protocol, host name, and port) (false by default).
     #
-    #url_for(:only_path => true )
+    url_for(:only_path => true )
   end
 
 
