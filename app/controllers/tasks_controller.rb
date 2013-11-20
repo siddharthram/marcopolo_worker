@@ -172,9 +172,9 @@ def preview
         }
       }
       r = HTTParty.post(@@base + '/task/lock', options).inspect
-  end
+    end
       render  :layout => 'noheader' #:layout => false # render the preivew with no layout
-end
+    end
 
   # POST /tasks
   # POST /tasks.json
@@ -260,18 +260,18 @@ end
     }
   end
 
-if ((@isppt == true) || (params[:task] == nil))
+  if ((@isppt == true) || (params[:task] == nil))
   #
   # either there is an attachment and it is ppt, or 
   # there is plain text. Either case, submit.
   #
-    r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
-    puts "submit response from server" + r
-    puts "turk job = " + @task.isturkjob.to_s
-    turkjob = @task.isturkjob
-    @task.destroy
-  end
-    if (turkjob == false)
+  r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
+  puts "submit response from server" + r
+  puts "turk job = " + @task.isturkjob.to_s
+  turkjob = @task.isturkjob
+  @task.destroy
+end
+if (turkjob == false)
     # redirect only if it is on the portal
     puts "sending to root_url"
     respond_to do |format|
@@ -282,7 +282,7 @@ if ((@isppt == true) || (params[:task] == nil))
     # for mturks. returns the relative url because of the option
     #:only_path - If true, returns the relative URL (omitting the protocol, host name, and port) (false by default).
     #
-    url_for(:only_path => true )
+    #url_for(:only_path => true )
   end
 
 
@@ -321,4 +321,4 @@ end
 end
 
 
- 
+
