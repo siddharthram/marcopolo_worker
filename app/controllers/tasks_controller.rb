@@ -226,8 +226,7 @@ end
         #
         puts "*****PPT is false"
         @isppt = false
-        url_for(:only_path => true )
-        return
+        return url_for(:only_path => true )
       end
 
     #upload_file = ""
