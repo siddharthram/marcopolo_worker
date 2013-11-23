@@ -1,119 +1,111 @@
 <h1>Task Detail</h1>
 
 <script type="text/javascript">
-	var submitdone = false;
-	$(document).ready(function() {
-	$('.edit_task').ajaxForm({
-		  //dataType: "script",
+        var submitdone = false;
+        $(document).ready(function() {
+        $('.edit_task').ajaxForm({
+                  //dataType: "script",
          success: ajaxFormSuccessHandler,
         error: ajaxFormErrorHandler
-		});
+                });
 });
 
-	function ajaxFormSuccessHandler() {
-		alert ("checking ppt");
-		if (<%@isppt == false%>) {
-			alert ("your document must be a ppt or pptx");
-			submitdone = false;
-			return;
-		}
-		else {
-			alert ("accepting powerpoint");
-		if (submitdone == false) {
-		<% if (@task.isturkjob == true ) %>
-			// the submit to turk
-				//$('.edit_task').html(response);
-				//$('.edit_task').unbind('submit');
-	            var querystring = $('#assignmentId').val();
-	    		querystring = "?assignmentId=" + querystring;
-	            //var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
-	            var ac = "https://www.mturk.com/mturk/externalSubmit" + querystring;
-	            //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
-	            $(".edit_task").attr("action", ac);
-	            
-	    		$('#task_attachment').remove();
-	            //alert(querystring);
-	            var options = {
-	            	//data: querystring,
-	            	type: 'get'
-	            };
-	            //$(".edit_task").attr("type","get");
-	           $(".edit_task").attr("Content-Type","application/x-www-form-urlencoded");
+        function ajaxFormSuccessHandler() {
+                if (submitdone == false) {
+                <% if (@task.isturkjob == true ) %>
+                        // the submit to turk
+                                //alert("done sending to update with status");
+                                //$('.edit_task').html(response);
+                                //$('.edit_task').unbind('submit');
+                    //alert("submmiting to mturk from edit");
+                    var querystring = $('#assignmentId').val();
+                            querystring = "?assignmentId=" + querystring;
+                    var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
+                    //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
+                    $(".edit_task").attr("action", ac);
+                    
+                            $('#task_attachment').remove();
+                    //alert(querystring);
+                    var options = {
+                            //data: querystring,
+                            type: 'get'
+                    };
+                    //$(".edit_task").attr("type","get");
+                   $(".edit_task").attr("Content-Type","application/x-www-form-urlencoded");
 
-				//$('#id').attr("action", ac);
-				$('.edit_task').unbind('submit').submit();
-	            //$(".edit_task").submit();
-	    <%else%>
-	    		//alert("redirecting to root");
-	    		window.location = "http://ximly.herokuapp.com"
-	     <%end%>
-	    submitdone = true;
-	} 
+                                //$('#id').attr("action", ac);
+                                $('.edit_task').unbind('submit').submit();
+                    //$(".edit_task").submit();
+            <%else%>
+                            //alert("redirecting to root");
+                            //window.location = "http://ximly.herokuapp.com"
+             <%end%>
+            submitdone = true;
+        } 
 
-	}
-}
+        }
 
-	function ajaxFormErrorHandler () {
-		//alert ("failure!");
-		window.console && console.log('ajaxform failure');
-	}
+        function ajaxFormErrorHandler () {
+                //alert ("failure!");
+                window.console && console.log('ajaxform failure');
+        }
 
 
-	function doClick() {
-		var act = $(".edit_task").attr("action");
-	    //var act = "http://workersandbox.mturk.com/mturk/externalSubmit";
+        function doClick() {
+                var act = $(".edit_task").attr("action");
+            //var act = "http://workersandbox.mturk.com/mturk/externalSubmit";
 
-		//var filename = document.getElementById("attach").files[0];
-		//console.log ("file is" + filename);
-		//var reader = new FileReader();
-		//reader.readAsBinaryString(filename);
-		var contents;
-		//reader.onload(function(e) {
-	//		contents = e.target.result;
-		//});
-	//alert ("in the html - put goes to " + act);
-	$.ajax({
-		type: 'PUT',
-		url : act,
-		headers: {"Content-type" : "application/x-www-form-urlencoded"},
-		data : $('.edit_task').formSerialize(), //+'&filedata=' + NonFormValue,
-		success : function(response, status, xhr) {
-			ajaxFormSuccessHandler();
-	         },
-	    error: function(response, status, xhr) {
-	           alert("error " + status);
-	     }
-	 });
+                //var filename = document.getElementById("attach").files[0];
+                //console.log ("file is" + filename);
+                //var reader = new FileReader();
+                //reader.readAsBinaryString(filename);
+                var contents;
+                //reader.onload(function(e) {
+        //                contents = e.target.result;
+                //});
+        alert ("in the html - put goes to " + act);
+        $.ajax({
+                type: 'PUT',
+                url : act,
+                headers: {"Content-type" : "application/x-www-form-urlencoded"},
+                data : $('.edit_task').formSerialize(), //+'&filedata=' + NonFormValue,
+                success : function(response, status, xhr) {
+                        ajaxFormSuccessHandler();
+                 },
+            error: function(response, status, xhr) {
+                   alert("error " + status);
+             }
+         });
 }
 
 /*
-		var act = $(".edit_task").attr("action");
-		$(".edit_task").attr("action", "");
-		//alert ("doc ready");
-		$('.edit_task').unbind('submit');
+                var act = $(".edit_task").attr("action");
+                $(".edit_task").attr("action", "");
+                alert ("doc ready");
+                $('.edit_task').unbind('submit');
 
-	$(".edit_task").bind('submit',function() {
-		var output = $("textarea#output").val();
-		var ass = $("#assignmentId").val();
-		//alert (act + " " + output + " " + ass);
-		//alert ("calling local");
-		$.ajax({
-			type: 'PUT',
-			url : act,
-			data : $('.edit_task').serialize(),
-			success : function(response) {
-				$('.edit_task').html(response);
-				$('.edit_task').unbind('submit');
-	            //alert("submmiting to mturk from edit");
-	            var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
-	            //alert ("ac is" + ac);
-	            //alert("calling mturk");
-				$(".edit_task").attr("action", ac);
-				$('.edit_task').submit();
-			}
-		});		
-		return false;
-	});
+        $(".edit_task").bind('submit',function() {
+                var output = $("textarea#output").val();
+                var ass = $("#assignmentId").val();
+                //alert (act + " " + output + " " + ass);
+                alert ("calling local");
+                $.ajax({
+                        type: 'PUT',
+                        url : act,
+                        data : $('.edit_task').serialize(),
+                        success : function(response) {
+                                $('.edit_task').html(response);
+                                $('.edit_task').unbind('submit');
+                    alert("submmiting to mturk from edit");
+                    var ac = "http://workersandbox.mturk.com/mturk/externalSubmit";
+                    alert ("ac is" + ac);
+                    alert("calling mturk");
+                                $(".edit_task").attr("action", ac);
+                                $('.edit_task').submit();
+                        }
+                });                
+                return false;
+        });
 */
 
 </script>
@@ -121,20 +113,20 @@
 <!--
 <body>
 
-	<form id="foo">
-		<label for="bar">A bar</label> <input id="q" name="q" type="text"
-			value="junk" /> <input type="submit" id="submit_btn" value="Send" />
-		<br> Form result is ..................
-		<div id='form_result'></div>
-	</form>
+        <form id="foo">
+                <label for="bar">A bar</label> <input id="q" name="q" type="text"
+                        value="junk" /> <input type="submit" id="submit_btn" value="Send" />
+                <br> Form result is ..................
+                <div id='form_result'></div>
+        </form>
 
-	<form id="foo2" action="http://www.mturk.com/mturk/externalSubmit">
-		<label for="bar">A bar</label> <input id="q" name="q" type="text"
-			value="junk2" /> <input type="submit" id="submit_btn2" value="Send" />
-		<br> Form result is ..................
-		<div id='form_result'></div>
-	</form>
-	
+        <form id="foo2" action="http://www.mturk.com/mturk/externalSubmit">
+                <label for="bar">A bar</label> <input id="q" name="q" type="text"
+                        value="junk2" /> <input type="submit" id="submit_btn2" value="Send" />
+                <br> Form result is ..................
+                <div id='form_result'></div>
+        </form>
+        
 </body>
 </html>
 -->
@@ -145,19 +137,19 @@
 <%= hidden_field_tag :workerId, @worker %>
 <%= hidden_field_tag :hitId, @hit %>
 <div class="row">
-	<div class="span8">
-		<%= link_to image_tag(@imagelocation), @imagelocation,
-		onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
-	</div>
-	<% if (@task.attachmentformat != "ppt") %>
-	<div class="span4">
-		<%= text_area_tag :output, nil, :placeholder => "your work..", :rows => "20", :cols => "30" %>
-	</div>
-	<% else %>
-	<div class = "span4">
-		<%= f.file_field :attachment%>
-	</div>
-	<%end%>
+        <div class="span8">
+                <%= link_to image_tag(@imagelocation), @imagelocation,
+                onclick: "window.open (@imagelocation, 'Image','width=600,height=600')" %>
+        </div>
+        <% if (@task.attachmentformat != "ppt") %>
+        <div class="span4">
+                <%= text_area_tag :output, nil, :placeholder => "your work..", :rows => "20", :cols => "30" %>
+        </div>
+        <% else %>
+        <div class = "span4">
+                <%= f.file_field :attachment%>
+        </div>
+        <%end%>
 </div>
 <!--
 <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
@@ -167,16 +159,16 @@
 
 
 <!--
-	<div class ="row">
-		<div class="span2"> 
-			<input id="attach" type="file" />
-		</div>
-		<div class="span8"> </div>
+        <div class ="row">
+                <div class="span2"> 
+                        <input id="attach" type="file" />
+                </div>
+                <div class="span8"> </div>
 
-		<div class="span2">
-				<%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
-		</div>
-	</div>
+                <div class="span2">
+                                <%= tag "input", { "type" => "button","rows" => 10, "value" => "Done", "onclick" => "doClick()",  "class" => "btn btn-large btn-primary" } %>
+                </div>
+        </div>
 -->
 <%end%>
 <!--
