@@ -50,6 +50,7 @@ end
 
 def dolog
   puts "OK, NOW LOGGING FROM JS"
+end
 
 def preview
   puts "IN PREVIEW"
