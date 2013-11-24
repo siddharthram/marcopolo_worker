@@ -189,6 +189,7 @@ def preview
       if ((@fileext != "ppt") && (@fileext != "pptx"))
         puts "invalid file extention"
         @task.isvalid = false
+        @task.save
       end
     #upload_file = ""
 
