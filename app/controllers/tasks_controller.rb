@@ -172,7 +172,7 @@ def preview
     puts "PARAMS============" + params.to_s
     @id = params[:id]
     @task = Task.find(params[:id])
-    @validfile = true
+    @task.isvalid = true
     #puts "found task " + @task.to_s
 
     @assignment = params[:assignmentId]
@@ -189,7 +189,8 @@ def preview
     @fileext = @fileext.sub(/^\./,'')
     if !(@fileext == "ppt" || @fileext == "pptx")
       puts "invalid file extention"
-      @validfile = false
+      @task.isvalid = false
+      @task.save
       return
     end
     #upload_file = ""
