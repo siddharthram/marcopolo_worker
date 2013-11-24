@@ -50,6 +50,7 @@
         }
 
         function validateFiles(inputFile) {
+            var extError = false;
             var allowedExtension = ["ppt","pptx"];
             $.each(inputFile.files, function() {
                  extName = this.name.split('.').pop();
