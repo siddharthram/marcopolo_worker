@@ -182,20 +182,19 @@ def preview
     @options = nil
     @attachment = nil
     if (params[:task])
-
-    ofile = params[:task][:attachment].original_filename
-    puts "ofile is +" + ofile.to_s
-    @fileext = File.extname(ofile)
-    @fileext = @fileext.sub(/^\./,'')
-    if ((@fileext != "ppt") && (@fileext != "pptx"))
-      puts "invalid file extention"
-      @task.isvalid = false
-    end
+      ofile = params[:task][:attachment].original_filename
+      puts "ofile is +" + ofile.to_s
+      @fileext = File.extname(ofile)
+      @fileext = @fileext.sub(/^\./,'')
+      if ((@fileext != "ppt") && (@fileext != "pptx"))
+        puts "invalid file extention"
+        @task.isvalid = false
+      end
     #upload_file = ""
 
 
-      puts "Adding PPT attachment..."
-      @attachment = params[:task][:attachment]
+    puts "Adding PPT attachment..."
+    @attachment = params[:task][:attachment]
 
     @options = {
       #:headers => {'Content-type' => 'multipart/form-data'},
@@ -218,22 +217,21 @@ def preview
         :output => @output,
       }
     }
-    end
-    if (@task.isvalid == true)
+  end
+  if (@task.isvalid == true)
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
     puts "turk job = " + @task.isturkjob.to_s
   end
-    if (@task.isturkjob == false)
+  if (@task.isturkjob == false)
     # redirect only if it is on the portal
     puts "sending to root_url"
     respond_to do |format|
       format.html { redirect_to root_url}
-  else 
-    url_for(:only_path => true )
+    else 
+      url_for(:only_path => true )
+    end
   end
-  
-
 end
 
 def notify
