@@ -228,9 +228,9 @@ def preview
     puts "sending to root_url"
     respond_to do |format|
       format.html { redirect_to root_url}
-    else 
-      url_for(:only_path => true )
     end
+  else 
+      url_for(:only_path => true )
   end
 end
 
