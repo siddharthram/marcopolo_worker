@@ -49,6 +49,17 @@
                 window.console && console.log('ajaxform failure');
         }
 
+        function validateFiles(inputFile) {
+            var allowedExtension = ["ppt","pptx"];
+            $.each(inputFile.files, function() {
+                 extName = this.name.split('.').pop();
+                 if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+        });
+            if (extError) {
+                alert ("Document must be a ppt or pptx file!");
+            };
+        }
+
 
         function doClick() {
                 var act = $(".edit_task").attr("action");
@@ -146,7 +157,7 @@
         </div>
         <% else %>
         <div class = "span4">
-                <%= f.file_field :attachment%>
+                <%= f.file_field :attachment :onchange => "validateFiles(this);"%>
         </div>
         <%end%>
 </div>
