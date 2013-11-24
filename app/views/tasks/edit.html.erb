@@ -13,20 +13,13 @@
         function ajaxFormSuccessHandler() {
                 if (submitdone == false) {
                 <% if (@task.isturkjob == true ) %>
-                <%= dolog %>
-                        // the submit to turk
-                                //alert("done sending to update with status");
-                                //$('.edit_task').html(response);
-                                //$('.edit_task').unbind('submit');
-                    //alert("submmiting to mturk from edit");
                     var querystring = $('#assignmentId').val();
                             querystring = "?assignmentId=" + querystring;
                     var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
-                    //var attachment = $("<input>").attr("type", "hidden").attr("name", "mydata").val("bla");
                     $(".edit_task").attr("action", ac);
                     
                             $('#task_attachment').remove();
-                    //alert(querystring);
+                    alert("sending to mturk");
                     var options = {
                             //data: querystring,
                             type: 'get'
@@ -39,7 +32,7 @@
                     //$(".edit_task").submit();
             <%else%>
                             //alert("redirecting to root");
-                            //window.location = "http://ximly.herokuapp.com"
+                            window.location = "http://ximly.herokuapp.com"
              <%end%>
             submitdone = true;
         } 
