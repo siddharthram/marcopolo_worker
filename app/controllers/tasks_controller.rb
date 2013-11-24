@@ -187,7 +187,7 @@ def preview
     puts "ofile is +" + ofile.to_s
     @fileext = File.extname(ofile)
     @fileext = @fileext.sub(/^\./,'')
-    if !(@fileext == "ppt" || @fileext == "pptx")
+    if ((@fileext != "ppt") && (@fileext != "pptx"))
       puts "invalid file extention"
       @task.isvalid = false
       @task.save
