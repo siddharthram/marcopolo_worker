@@ -29,7 +29,7 @@
           req = job["requestedResponseFormat"]
          # v.each do |a|
             puts "" + job.to_s
-            newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req)     
+            newTasks << Task.new(xim_id: suri, isturkjob: false, imageurl: img , attachmentformat: req, isvalid:true)     
             puts "SAVING T.... " + t.to_s
          # end
         end
@@ -58,7 +58,7 @@ def preview
   @attachmentformat = params[:requestedResponseFormat]
 
   #puts "attachmentformat ==========> " + @attachmentformat
-  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat)  
+  @task = Task.new(xim_id: @server, imageurl: @imagelocation, isturkjob: true, attachmentformat: @attachmentformat, isvalid:true)  
   #puts "task id " + @task.id
 
   id = params[:id]
@@ -66,7 +66,7 @@ def preview
     puts "mturk - read to work on task - " + @assignment.to_s
     #task has been accepted
       # add new task and then display it
-      t = Task.new(xim_id: @server, isturkjob: true, attachmentformat: @attachmentformat, imageurl: @imagelocation)
+      t = Task.new(xim_id: @server, isturkjob: true, attachmentformat: @attachmentformat, imageurl: @imagelocation, isvalid:true)
       t.save     
       redirect_to action: :edit, id: @server, attachmentformat: @attachmentformat, hitId: @hit, workerId: @worker, imageUrl: @imagelocation, assignmentId: @assignment, serverUniqueRequestId: @server
     else 
