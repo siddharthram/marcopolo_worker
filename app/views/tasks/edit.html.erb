@@ -13,7 +13,7 @@
         function ajaxFormSuccessHandler() {
                 if (submitdone == false) {
                 <% if (@task.isturkjob == true ) %>
-                    alert(" valid = <%= @fileext.to_json> <%= @validfile.to_json %>");
+                    alert(" valid = <%= @fileext.to_json%> <%= @validfile.to_json %>");
 
                 <% if (@validfile.to_json == false) %>
                 alert ("invalid filetype submitted");
