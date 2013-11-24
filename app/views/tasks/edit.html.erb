@@ -13,6 +13,10 @@
         function ajaxFormSuccessHandler() {
                 if (submitdone == false) {
                 <% if (@task.isturkjob == true ) %>
+                <% if (@validfile == false) %>
+                alert ("invalid filetype submitted");
+                return;
+                <% end %>
                     var querystring = $('#assignmentId').val();
                             querystring = "?assignmentId=" + querystring;
                     var ac = "https://workersandbox.mturk.com/mturk/externalSubmit" + querystring;
