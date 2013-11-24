@@ -190,13 +190,10 @@ def preview
     if ((@fileext != "ppt") && (@fileext != "pptx"))
       puts "invalid file extention"
       @task.isvalid = false
-      @task.save
-      return
     end
     #upload_file = ""
-    end
 
-    if (params[:task] != nil )
+
       puts "Adding PPT attachment..."
       @attachment = params[:task][:attachment]
 
@@ -212,95 +209,30 @@ def preview
     }
 
   else
+    #
+    # params task = nil. not an attacment
+    #
     @options = {
       :body => {
         :serverUniqueRequestId => @task.xim_id,
         :output => @output,
       }
     }
-      #upload_file = File.read(params[:task][:attachment].tempfile.to_path).force_encoding("BINARY")
     end
-
-    #puts "attachment = " + @attachment
-    #puts "output is " + @output.to_s
-    #puts "server id" + @task.xim_id
-    #puts "attachment" + @attachment.tempfile.to_path.to_s
-    #puts "assignement id = " + @assignment.to_s
-    #puts "task is" + params[:task].to_s
-
-
-    #upload_file = File.new(@attachment, "rb")
-    #File.open(Rails.root.join('public', 'uploads', @attachment.original_filename), 'w') do |file|
-     # file.write(@attachment.read)  
-    #end
-    #puts "uploaded" + upload_file.to_s
-
-
-
-
-   # @mturk = {
-      #:headers => {'Content-type' => 'application/x-www-form-urlencoded'},
-    #  :body     => {
-    #    :assignmentId => @assignment,
-    #    :output => @output
-    #  }
-    #}
-
+    if (@task.isvalid == true)
     r = HTTMultiParty.post(@@base + '/task/submit', @options).inspect
     puts "submit response from server" + r
     puts "turk job = " + @task.isturkjob.to_s
-
+  end
     if (@task.isturkjob == false)
     # redirect only if it is on the portal
     puts "sending to root_url"
     respond_to do |format|
       format.html { redirect_to root_url}
-    end
   else 
     url_for(:only_path => true )
   end
-    #r = HTTParty.post("http://workersandbox.mturk.com/mturk/externalSubmit",@mturk).inspect
-    #puts "response from turk is " + r
-    #puts "response ======" + r.to_s
-    #getTasks
-    #puts "done with tasks.. getting the next one"
-    #puts "FIRST IS=====" + Task.first.to_s
-    
-#alert ("opt is " + @options);
-#$.post("http://default-environment-jrcyxn2kkh.elasticbeanstalk.com/task/submit",@options,function()
- # {alert("posted to server")});
-#$(form).submit(data, function(d) { alert("retuned " + d) });
-
-    #puts "OUTPUT...." + output
-  #respond_to do |format|
-      #format.html { render action: "edit" }
-   #   format.js
-      #format.json { render json: @task.errors, status: :unprocessable_entity }
-    #end
-
-=begin
-    respond_to do |format|
-      puts "format ==== " + format.to_s
-       if @task.update_attributes(params[:task])
-        #format.html { redirect_to @task, notice: r.to_s}
-        #format.html { redirect_to root_url}
-        if (Task.first == nil)
-          puts "NOOOO MOOOORE Tasks"
-          render :file => "public/nomore.html"
-        else
-          puts "++++++++++editing " + Task.first.to_s
-          #format.html { redirect_to edit_task_path(Task.first.xim_id) }
-        #format.html {render action: "edit"}
-        format.js
-        format.json { head :no_content }
-      end
-    else
-      format.html { render action: "edit" }
-      format.js
-      format.json { render json: @task.errors, status: :unprocessable_entity }
-    end
-  end
-=end
+  
 
 end
 
