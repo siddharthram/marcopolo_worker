@@ -13,6 +13,8 @@
         function ajaxFormSuccessHandler() {
                 if (submitdone == false) {
                 <% if (@task.isturkjob == true ) %>
+                    alert(" valid = <%= @validfile %>");
+
                 <% if (@validfile == false) %>
                 alert ("invalid filetype submitted");
                 return;
@@ -23,7 +25,6 @@
                     $(".edit_task").attr("action", ac);
                     
                             $('#task_attachment').remove();
-                    alert("sending to mturk");
                     var options = {
                             //data: querystring,
                             type: 'get'
